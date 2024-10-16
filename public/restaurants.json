@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "Le Bon Restaurant",
+    "cuisine": "Française",
+    "menu": [
+      { "id": 1, "name": "Croissant", "price": 2.5 },
+      { "id": 2, "name": "Baguette", "price": 1.5 }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pizza Palace",
+    "cuisine": "Italienne",
+    "menu": [
+      { "id": 1, "name": "Margherita", "price": 8 },
+      { "id": 2, "name": "Pepperoni", "price": 9 }
+    ]
+  }
+]
+  
