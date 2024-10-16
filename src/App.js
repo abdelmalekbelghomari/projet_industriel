@@ -44,6 +44,7 @@ function App() {
                 <h2>{product.name}</h2>
                 <p>Price: {product.price}</p>
                 <p>In Stock: {product.inStock ? 'Yes' : 'No'}</p>
+                <p>Qui est le gros puant: {product.quiPue} </p>
               </li>
             ))}
           </ul>
