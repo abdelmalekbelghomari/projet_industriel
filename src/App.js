@@ -42,9 +42,9 @@ function App() {
             {products.map(product => (
               <li key={product.id}>
                 <h2>{product.name}</h2>
-                <p>Price: {product.price}</p>
+                <p>Price: {product.price} €</p>
                 <p>In Stock: {product.inStock ? 'Yes' : 'No'}</p>
-                <p>Qui est le gros puant: {product.quiPue} </p>
+                {/* <p>Qui est le gros puant: {product.quiPue} </p> */}
               </li>
             ))}
           </ul>
