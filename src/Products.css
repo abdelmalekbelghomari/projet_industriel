@@ -4,7 +4,7 @@
   }
   
   /* Input fields */
-  .meal-input {
+  .meal-input,.menu-input {
     border: 2px solid black; /* Solid black border */
     padding: 5px; /* Padding inside the input */
     border-radius: 4px; /* Rounded corners */

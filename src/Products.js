@@ -90,6 +90,7 @@ function Products() {
             value={menuName}
             onChange={handleMenuNameChange}
             required
+            className='menu-input'
           />
         </div>
 
