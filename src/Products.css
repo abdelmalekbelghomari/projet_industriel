@@ -1,0 +1,34 @@
+/* Container for meal input fields */
+.meal-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Input fields */
+  .meal-input {
+    border: 2px solid black; /* Solid black border */
+    padding: 5px; /* Padding inside the input */
+    border-radius: 4px; /* Rounded corners */
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Ensures padding is included in width */
+  }
+  
+  /* Button styles */
+  .button {
+    margin-top: 10px; /* Space above the button */
+    padding: 5px 10px; /* Padding inside the button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* General styles */
+  h2 {
+    margin-bottom: 15px; /* Space below the heading */
+  }
+  
