@@ -2,21 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Déclaration de la police Costa Std */
+@font-face {
+  font-family: 'Costa Std';
+  src: url('./assets/fonts/fonnts.com-Costa_Std.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Applique la police dans toute l'application */
+body, .app-container {
+  font-family: 'Costa Std', sans-serif;
+}
+
+/* Navbar Styles */
+.navbar, .nav-links {
+  font-family: 'Costa Std', sans-serif;
+}
+
 /* Container for the whole app */
 .app-container {
-  font-family: 'Arial', sans-serif;
+  height: 100vh;
 }
 
 /* Content wrapper to split left and right sections */
 .content-container {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: calc(100vh - 80px);
 }
 
 /* Left section (white background) */
 .left-section {
-  background-color: #fff; /* White background */
-  width: 60%; /* Takes 60% of the screen width */
+  background-color: #fff;
+  width: 60%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -25,49 +43,78 @@
 
 .left-section h1 {
   font-size: 3rem;
-  color: #222153; /* Dark purple color */
+  color: #222153;
+  font-family: 'Costa Std', sans-serif;
 }
 
 .left-section p {
   color: #222153;
   font-size: 1.25rem;
   margin-top: 20px;
+  font-family: 'Costa Std', sans-serif;
 }
 
 /* Search box styling */
 .search-box {
   display: flex;
   margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .search-box input {
-  padding: 10px;
+  padding: 15px;
   font-size: 1.2rem;
   border: 1px solid #ccc;
   flex-grow: 1;
-  border-radius: 5px 0 0 5px;
+  border-radius: 30px 0 0 30px;
+  border-right: none;
 }
 
 .search-box button {
-  background-color: #ff4c4c; /* Red GO button */
+  background-color: #ff4c4c;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 15px 30px;
   font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 30px 30px 0;
+  transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #d43f3f;
 }
 
 /* Right section (red background with image) */
 .right-section {
-  background-color: #ff4c4c; /* Red background */
-  width: 40%; /* Takes 40% of the screen width */
+  background-color: #ff4c4c;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 0;
+  height: 100vh;
 }
 
 .right-section img {
-  max-width: 80%; /* Adjust the image size */
+  max-width: 80%;
   height: auto;
+}
+
+/* Middle Image Styling */
+.middle-image {
+  position: absolute;
+  top: 50%;
+  left: calc(60% - 100px);
+  transform: translateY(-50%);
+}
+
+.middle-image img {
+  max-width: 200px;
+  height: auto;
+  z-index: 5;
 }

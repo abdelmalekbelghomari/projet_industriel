@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'; // Navbar imported here
 import { BrowserRouter as Router } from 'react-router-dom';
 import db from './firebaseConfig'; // Firestore config
 import { collection, getDocs } from 'firebase/firestore'; // Firestore functions
-import './App.css'; // Custom CSS
+import './App.css'; // Import your CSS for styling
+import GroceriesImage from './assets/images/groceries.png';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch data from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsCollection = collection(db, 'products'); // Reference 'products' collection
-        const productsSnapshot = await getDocs(productsCollection); // Get documents
+        const productsCollection = collection(db, 'products');
+        const productsSnapshot = await getDocs(productsCollection);
         const productsList = productsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -62,8 +64,12 @@ function App() {
 
           {/* Right section (Red background with image) */}
           <div className="right-section">
-            <img src="./path-to-your-image.png" alt="Food platter" />
           </div>
+        </div>
+
+        {/* Add the new image between white and red sections */}
+        <div className="middle-image">
+          <img src={GroceriesImage} alt="Courses" />
         </div>
       </div>
     </Router>
