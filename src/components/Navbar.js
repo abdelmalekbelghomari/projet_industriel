@@ -1,57 +1,51 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
 import './Navbar.css';
 
+/* Corrected paths for the SVGs */
+import FranceFlag from '../assets/icons/france.svg';
+import LocationIcon from '../assets/icons/location.svg';
+import CartIcon from '../assets/icons/cart.svg';
+import UserIcon from '../assets/icons/user.svg';
+
 function Navbar() {
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-
-  const handleClick = () => setClick(!click);
-
-  const showButton = () => {
-    if(window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  }; 
-
-  window.addEventListener('resize', showButton);
-
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">EcolocoBox</Link>
+        <Link to="/">Quicklibox</Link>
       </div>
-      <div className="menu-icon" onClick={handleClick}>
-        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-      </div>
-      <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-        <li className="nav-item">
-          <Link to="/" className="nav-links">
-            Home
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/services" className="nav-links">
-            Services
-          </Link>
-        </li>
+      <ul className="nav-menu">
         <li className="nav-item">
           <Link to="/products" className="nav-links">
-            Products
+            nos produits
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/sign-up" className="nav-links-mobile">
-            Sign Up
+          <Link to="/about" className="nav-links">
+            a propos
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact" className="nav-links">
+            nous contacter
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/subscriptions" className="nav-links">
+            nos abonnements
           </Link>
         </li>
       </ul>
-      {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+      
+      {/* Add SVG icons */}
+      <div className="navbar-icons">
+        <img src={FranceFlag} alt="French flag" className="icon" />
+        <img src={LocationIcon} alt="Location icon" className="icon" />
+        <img src={CartIcon} alt="Cart icon" className="icon" />
+        <img src={UserIcon} alt="User icon" className="icon" />
+      </div>
     </nav>
   );
-};
+}
 
 export default Navbar;

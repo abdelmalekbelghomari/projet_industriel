@@ -1,18 +1,22 @@
 :root{
-    --primary : #fff;
+    --primary : #4CAFEB;
+    --hover-color: #3a8fd0; /* Darker bluish color for hover */
+    --text-color: #ffffff; /* Text color inside buttons */
+    --outline-color: #ffffff; /* Color for outline buttons */
 }
 
 .btn{
     padding : 8px 20px;
     border-radius : 5px;
     outline : none;
-    border: none;
+    border: none; 
     cursor: pointer;
+    transition: all 0.3s ease-out;
 }
 
 .btn--primary{
     background-color: var(--primary);
-    color: #333;
+    color: var(--text-color);;
     border: 1px solid var(--primary);
 }
 
@@ -36,6 +40,10 @@
 
 .btn--medium:hover, .btn--large:hover{
     background-color: var(--primary);
-    color: #333;
+    color: var(--text-color);
     transition: all 0.3s ease-out;
+}
+
+.btn--outline:hover {
+    border-color: var(--hover-color); 
 }
