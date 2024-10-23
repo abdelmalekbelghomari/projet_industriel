@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import db from './firebaseConfig'; // Import Firestore
 import { collection, getDocs } from "firebase/firestore"; // Import necessary Firestore functions
+import Products from './Products';
 
 import './App.css';
 
@@ -33,6 +34,9 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <Routes>
+        <Route path="/products" element={<Products />} />
+      </Routes>
       <h1 className="text-3xl font-bold underline">Welcome to EcolocoBox!</h1>
       <div className="App">
         {loading ? (
