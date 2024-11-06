@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 // import Navbar from './components/Navbar';
+// import MenuCard from './components/MenuCard';
 import MenuEntry from './components/MenuEntry'; // Import du composant MenuEntry
 import db from './firebaseConfig';
 import { collection, getDocs, setDoc, doc } from 'firebase/firestore';

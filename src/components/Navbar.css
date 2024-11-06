@@ -11,6 +11,7 @@
     font-family: 'Costa Std', sans-serif; /* Utiliser la police Costa Std */
   }
 /* Navbar Styles */
+/* Navbar Styles */
 .navbar {
     background-color: transparent;
     position: fixed;
@@ -21,8 +22,20 @@
     align-items: center;
     padding: 20px 50px;
     z-index: 10;
-    font-family: 'Costa Std', sans-serif; /* Application de la police Costa Std */
-  }
+    font-family: 'Costa Std', sans-serif;
+}
+
+/* Right background section for the red color */
+.navbar-right-bg {
+    background-color: #ff4c4c;
+    width: 40%; /* Adjust to match the right-section width in App.js */
+    height: 100%; /* Full navbar height */
+    position: absolute;
+    top: 0;
+    right: 0; /* Align to the right */
+    z-index: -1; /* Place it behind other navbar content */
+}
+
   
   /* Ajustement de la largeur du menu */
   .nav-menu {

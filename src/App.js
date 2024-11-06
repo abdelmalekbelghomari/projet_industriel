@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import db from './firebaseConfig'; // Import Firestore
-import { collection, getDocs } from 'firebase/firestore'; // Import necessary Firestore functions
+import MenuCard from './components/MenuCard'; // Import MenuCard component
+import db from './firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
-// import Home from './pages/Home'; // Assuming this is your main homepage component
 import GroceriesImage from './assets/images/groceries.png';
 import './App.css';
 
@@ -40,10 +40,11 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className="pt-24"> </div>
+      <div className="pt-24"></div>
       <Routes>
         {/* Route for Products */}
         <Route path="/products" element={<Products />} />
+        
         {/* Route for Home */}
         <Route
           path="/"
@@ -56,29 +57,17 @@ function App() {
                   <button>GO</button>
                 </div>
                 <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
-                <div className="product-list">
+                <div className="flex flex-wrap justify-center mt-8">
                   {loading ? (
                     <h1>Loading...</h1>
                   ) : (
-                    <ul>
-                      {menus.length > 0 ? (
-                        menus.map((menu) => (
-                          <li key={menu.id}>
-                            <h2>{menu.menuName}</h2>
-                            <p>Meals:</p>
-                            <ul>
-                              {menu.meals.map((meal, mealIndex) => (
-                                <li key={mealIndex}>
-                                  <strong>{meal.name}</strong>: {meal.ingredients.join(', ')}
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ))
-                      ) : (
-                        <p>No menus found.</p>
-                      )}
-                    </ul>
+                    menus.length > 0 ? (
+                      menus.map((menu) => (
+                        <MenuCard key={menu.id} menu={menu} />
+                      ))
+                    ) : (
+                      <p>No menus found.</p>
+                    )
                   )}
                 </div>
               </div>
@@ -90,8 +79,6 @@ function App() {
             </div>
           }
         />
-
-        
       </Routes>
     </Router>
   );

@@ -27,7 +27,7 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <Link to="/about" className="nav-links">
-          À Propos
+            À Propos
           </Link>
         </li>
         <li className="nav-item">
@@ -44,6 +44,9 @@ function Navbar() {
         <img src={CartIcon} alt="Cart icon" className="icon" />
         <img src={UserIcon} alt="User icon" className="icon" />
       </div>
+
+      {/* Right background section */}
+      <div className="navbar-right-bg"></div>
     </nav>
   );
 }
