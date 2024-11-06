@@ -17,22 +17,22 @@ function Navbar() {
       <ul className="nav-menu">
         <li className="nav-item">
           <Link to="/products" className="nav-links">
-            nos produits
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/about" className="nav-links">
-            a propos
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/contact" className="nav-links">
-            nous contacter
+            Nos Produits
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/subscriptions" className="nav-links">
-            nos abonnements
+            Nos Abonnements
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className="nav-links">
+          À Propos
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact" className="nav-links">
+            Nous Contacter
           </Link>
         </li>
       </ul>
