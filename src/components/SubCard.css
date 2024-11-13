@@ -1,0 +1,45 @@
+.sub-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sub-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.sub-card.disabled{
+    background-color: gainsboro;
+}
+
+.sub-card.disabled:hover {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.sub-card.disabled .title, 
+.sub-card.disabled .price {
+    color: grey;
+} 
+
+.sub-card.disabled .add-to-cart {
+    background-color: rgb(172, 172, 172);
+    color: grey;
+}
+
+
+
+.sub-card.large {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sub-card.large:hover {
+    transform: translateY(-10px) scale(1.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart:hover {
+    background-color: #ffffff;
+    color: #1E1E4C;
+    border: none;
+    /* cursor: pointer; */
+}

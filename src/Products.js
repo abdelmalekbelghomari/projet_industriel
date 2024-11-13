@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import Navbar from './components/Navbar';
-// import MenuCard from './components/MenuCard';
 import MenuEntry from './components/MenuEntry'; // Import du composant MenuEntry
 import db from './firebaseConfig';
 import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
@@ -9,6 +7,23 @@ import './Products.css';
 function Products() {
   const [menuName, setMenuName] = useState('');
   const [meals, setMeals] = useState([{ name: '', ingredients: [''] }]);
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState('');
+
+  const correctPassword = process.env.REACT_APP_PASSWORD;
+
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    if (password === correctPassword) {
+      setIsAuthenticated(true);
+      setError('');
+    } else {
+      setError('Incorrect password');
+    }
+  };
 
   const handleMenuNameChange = (e) => setMenuName(e.target.value);
 
@@ -36,42 +51,66 @@ function Products() {
     }
     const menuDocRef = doc(menusCollectionRef);
     await setDoc(menuDocRef, parsedData);
-    alert('Menu successfully added to Firestore!');
+    alert('Menu successfully added to the database!');
     setMenuName('');
     setMeals([{ name: '', ingredients: [''] }]);
   };
 
-  return (
-      <div className="left-section p-8">
-        <h2 className="text-3xl text-blue-800 mb-6 font-bold">Insert Menus</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+  if (!isAuthenticated) {
+    return (
+      <div className="authentication-container">
+        <h2 className="text-3xl text-blue-800 mb-6 font-bold">Enter Password</h2>
+        <form onSubmit={handlePasswordSubmit} className="space-y-4">
           <div>
-            <label className="block text-lg font-semibold mb-2">Menu Name:</label>
+            <label className="block text-lg font-semibold mb-2">Password:</label>
             <input
-              type="text"
-              value={menuName}
-              onChange={handleMenuNameChange}
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
               required
               className="menu-input p-2 w-full border border-gray-400 rounded-md"
             />
           </div>
-          {meals.map((meal, index) => (
-            <MenuEntry
-              key={index}
-              meal={meal}
-              index={index}
-              onMealChange={handleMealChange}
-              onRemoveMeal={removeMeal}
-            />
-          ))}
-          <button type="button" onClick={addMeal} className="button bg-blue-500 text-white px-3 py-2 rounded-md">
-            + Add Meal
-          </button>
-          <button type="submit" className="button bg-green-500 text-white px-4 py-2 rounded-md">
+          {error && <p className="text-red-500">{error}</p>}
+          <button type="submit" className="button bg-blue-500 text-white px-3 py-2 rounded-md">
             Submit
           </button>
         </form>
       </div>
+    );
+  }
+
+  return (
+    <div className="left-section p-8">
+      <h2 className="text-3xl text-blue-800 mb-6 font-bold">Insert Menus</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-lg font-semibold mb-2">Menu Name:</label>
+          <input
+            type="text"
+            value={menuName}
+            onChange={handleMenuNameChange}
+            required
+            className="menu-input p-2 w-full border border-gray-400 rounded-md"
+          />
+        </div>
+        {meals.map((meal, index) => (
+          <MenuEntry
+            key={index}
+            meal={meal}
+            index={index}
+            onMealChange={handleMealChange}
+            onRemoveMeal={removeMeal}
+          />
+        ))}
+        <button type="button" onClick={addMeal} className="button bg-blue-500 text-white px-3 py-2 rounded-md">
+          + Add Meal
+        </button>
+        <button type="submit" className="button bg-green-500 text-white px-4 py-2 rounded-md">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 

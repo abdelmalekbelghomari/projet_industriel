@@ -5,14 +5,15 @@ import MenuCard from './components/MenuCard'; // Import MenuCard component
 import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
+import Subscriptions from './Subscriptions';
 import GroceriesImage from './assets/images/groceries.png';
 import './App.css';
+import ErrorPage from './Error'; // Import Error component
 
 function App() {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data from Firestore
   useEffect(() => {
     const fetchMenus = async () => {
       try {
@@ -42,10 +43,11 @@ function App() {
       <Navbar />
       <div className="pt-24"></div>
       <Routes>
-        {/* Route for Products */}
         <Route path="/products" element={<Products />} />
-        
-        {/* Route for Home */}
+        <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/about" element={<ErrorPage />} />
+        <Route path="/contact" element={<ErrorPage />} />
+        <Route path="/404" element={<ErrorPage />} />
         <Route
           path="/"
           element={
