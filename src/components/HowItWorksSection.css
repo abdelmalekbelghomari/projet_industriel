@@ -1,0 +1,20 @@
+.how-it-works-container {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #d93025; /* Red background to match the design */
+      }
+      
+      .how-it-works-container h2 {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      .how-it-works-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      

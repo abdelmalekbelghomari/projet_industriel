@@ -37,7 +37,6 @@ body, .app-container {
 }
 
 .content-container- {
-  background-color: yellow;
   width: 60%;
   padding: 20px;
   display: flex;
@@ -71,4 +70,27 @@ body, .app-container {
   max-width: 200px;
   height: auto;
   z-index: 5;
+}
+
+box-cards-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5ebe3; /* Matches the creamy background color */
+}
+
+.box-cards-container h2 {
+  color: #2b1a46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.box-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }

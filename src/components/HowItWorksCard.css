@@ -1,0 +1,27 @@
+.how-it-works-card {
+        background-color: #ffffff;
+        color: #2b1a46;
+        width: 180px; /* Adjust width as needed */
+        height: 180px; /* Adjust height as needed */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .how-it-works-icon img {
+        width: 50px; /* Adjust size of icon */
+        height: 50px;
+      }
+      
+      .how-it-works-label {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #2b1a46; /* Match the color in your design */
+      }
+      

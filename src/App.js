@@ -7,6 +7,9 @@ import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
 import Footer from './components/Footer';
+import BoxSection from './components/BoxSection';
+import HowItWorksSection from './components/HowItWorksSection';
+import ReviewsSection from './components/ReviewsSection';
 //import GroceriesImage from './assets/images/groceries.png';
 import './App.css';
 
@@ -56,29 +59,34 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="content-container">
-              <div className="main-section">
-                <h1>Découvrez si nous livrons chez vous</h1>
-                <SearchBox onSearch={handleSearch} />
-                <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
-                <div className="flex flex-wrap justify-center mt-8">
-                  {loading ? (
-                    <h1>Loading...</h1>
-                  ) : (
-                    menus.length > 0 ? (
-                      menus.map((menu) => (
-                        <MenuCard key={menu.id} menu={menu} />
-                      ))
+            <>
+              <div className="content-container">
+                <div className="main-section">
+                  <h1>Découvrez si nous livrons chez vous</h1>
+                  <SearchBox onSearch={handleSearch} />
+                  <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
+                  <div className="flex flex-wrap justify-center mt-8">
+                    {loading ? (
+                      <h1>Loading...</h1>
                     ) : (
-                      <p>No menus found.</p>
-                    )
-                  )}
+                      menus.length > 0 ? (
+                        menus.map((menu) => (
+                          <MenuCard key={menu.id} menu={menu} />
+                        ))
+                      ) : (
+                        <p>No menus found.</p>
+                      )
+                    )}
+                  </div>
+                  {/* <div className="middle-image mt-8">
+                    <img src={GroceriesImage} alt="Courses" />
+                  </div> */}
                 </div>
-                {/* <div className="middle-image mt-8">
-                  <img src={GroceriesImage} alt="Courses" />
-                </div> */}
               </div>
-            </div>
+              <BoxSection />
+              <HowItWorksSection />
+              <ReviewsSection />
+            </>
           }
         />
       </Routes>

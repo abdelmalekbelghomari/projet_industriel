@@ -1,0 +1,27 @@
+.reviews-section {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #f5e8dc; /* Match the background color */
+      }
+      
+      .reviews-section h2 {
+        color: #2b1a46;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      .reviews-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      
+      .review-image {
+        width: 250px; /* Adjust the size as needed */
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
