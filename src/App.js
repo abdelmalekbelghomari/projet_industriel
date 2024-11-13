@@ -60,18 +60,6 @@ function App() {
               <div className="main-section">
                 <h1>Découvrez si nous livrons chez vous</h1>
                 <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
-                <SearchBox onSearch={handleSearch} />
                 <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
                 <div className="flex flex-wrap justify-center mt-8">
                   {loading ? (
