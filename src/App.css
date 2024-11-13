@@ -10,6 +10,7 @@
   font-style: normal;
 }
 
+
 /* Applique la police dans toute l'application */
 body, .app-container {
   font-family: 'Costa Std', sans-serif;
@@ -28,12 +29,14 @@ body, .app-container {
 /* Content wrapper to split left and right sections */
 .content-container {
   display: flex;
-  height: calc(100vh - 80px);
+  background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
 }
 
-/* Left section (white background) */
-.left-section {
-  background-color: #fff;
+.content-container- {
   width: 60%;
   padding: 20px;
   display: flex;
@@ -41,69 +44,19 @@ body, .app-container {
   justify-content: center;
 }
 
-.left-section h1 {
+.content-container h1 {
   font-size: 3rem;
   color: #222153;
   font-family: 'Costa Std', sans-serif;
 }
 
-.left-section p {
+.content-container p {
   color: #222153;
   font-size: 1.25rem;
   margin-top: 20px;
   font-family: 'Costa Std', sans-serif;
 }
 
-/* Search box styling */
-.search-box {
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 500px;
-  border-radius: 30px;
-  overflow: hidden;
-}
-
-.search-box input {
-  padding: 15px;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-  flex-grow: 1;
-  border-radius: 30px 0 0 30px;
-  border-right: none;
-}
-
-.search-box button {
-  background-color: #ff4c4c;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 0 30px 30px 0;
-  transition: background-color 0.3s ease;
-}
-
-.search-box button:hover {
-  background-color: #d43f3f;
-}
-
-/* Right section (red background with image) */
-.right-section {
-  background-color: #ff4c4c;
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: 0;
-  height: 100vh;
-}
-
-.right-section img {
-  max-width: 80%;
-  height: auto;
-}
 
 /* Middle Image Styling */
 .middle-image {
@@ -117,4 +70,27 @@ body, .app-container {
   max-width: 200px;
   height: auto;
   z-index: 5;
+}
+
+box-cards-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5ebe3; /* Matches the creamy background color */
+}
+
+.box-cards-container h2 {
+  color: #2b1a46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.box-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }

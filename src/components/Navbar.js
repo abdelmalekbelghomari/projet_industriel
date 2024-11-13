@@ -45,8 +45,6 @@ function Navbar() {
         <img src={UserIcon} alt="User icon" className="icon" />
       </div>
 
-      {/* Right background section */}
-      <div className="navbar-right-bg"></div>
     </nav>
   );
 }
