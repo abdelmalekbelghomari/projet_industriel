@@ -2,15 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard'; // Import MenuCard component
+import SearchBox from './components/SearchBox';
 import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
-import GroceriesImage from './assets/images/groceries.png';
+import Footer from './components/Footer';
+//import GroceriesImage from './assets/images/groceries.png';
 import './App.css';
 
 function App() {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleSearch = (query) => {
+    console.log("Searching for:", query);
+    // Implement search logic here
+  };
 
   // Fetch data from Firestore
   useEffect(() => {
@@ -50,12 +57,21 @@ function App() {
           path="/"
           element={
             <div className="content-container">
-              <div className="left-section">
+              <div className="main-section">
                 <h1>Découvrez si nous livrons chez vous</h1>
-                <div className="search-box">
-                  <input type="text" placeholder="Faites votre recherche ici..." />
-                  <button>GO</button>
-                </div>
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
+                <SearchBox onSearch={handleSearch} />
                 <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
                 <div className="flex flex-wrap justify-center mt-8">
                   {loading ? (
@@ -70,16 +86,15 @@ function App() {
                     )
                   )}
                 </div>
-              </div>
-              <div className="right-section">
-                <div className="middle-image">
+                {/* <div className="middle-image mt-8">
                   <img src={GroceriesImage} alt="Courses" />
-                </div>
+                </div> */}
               </div>
             </div>
           }
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
