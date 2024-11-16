@@ -38,16 +38,12 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-<<<<<<< HEAD
-        <Link to="/">EatyBox</Link>
-=======
         <Link to="/">
           <img src={logo} alt="Quicklibox Logo" className="logo-image" />
         </Link>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
         ☰
->>>>>>> 63aa9b3 (added a mouse click event)
       </div>
       <ul className="nav-menu">
         <li className="nav-item">
