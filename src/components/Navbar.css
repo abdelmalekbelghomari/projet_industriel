@@ -13,7 +13,7 @@
 /* Navbar Styles */
 /* Navbar Styles */
 .navbar {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%;
     display: flex;
@@ -22,7 +22,8 @@
     padding: 40px 20px;
     z-index: 10;
     font-family: 'Costa Std', sans-serif;
-    background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%);
+    background: transparent;
+    /* background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%); */
 }
 
 /* Right background section for the red color */
