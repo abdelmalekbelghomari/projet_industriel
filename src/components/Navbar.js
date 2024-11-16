@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
@@ -7,12 +7,47 @@ import FranceFlag from '../assets/icons/france.svg';
 import LocationIcon from '../assets/icons/location.svg';
 import CartIcon from '../assets/icons/cart.svg';
 import UserIcon from '../assets/icons/user.svg';
+import logo from '../assets/icons/logo.svg';
 
-function Navbar() {
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Close menu if clicking outside of it
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
+<<<<<<< HEAD
         <Link to="/">EatyBox</Link>
+=======
+        <Link to="/">
+          <img src={logo} alt="Quicklibox Logo" className="logo-image" />
+        </Link>
+      </div>
+      <div className="hamburger" onClick={toggleMenu}>
+        ☰
+>>>>>>> 63aa9b3 (added a mouse click event)
       </div>
       <ul className="nav-menu">
         <li className="nav-item">
@@ -36,7 +71,24 @@ function Navbar() {
           </Link>
         </li>
       </ul>
-      
+
+      {isMenuOpen && (
+        <div className="mobile-menu" ref={menuRef}>
+          <Link to="/products" onClick={closeMenu}>
+            Nos Produits
+          </Link>
+          <Link to="/subscriptions" onClick={closeMenu}>
+            Nos Abonnements
+          </Link>
+          <Link to="/about" onClick={closeMenu}>
+            À Propos
+          </Link>
+          <Link to="/contact" onClick={closeMenu}>
+            Nous Contacter
+          </Link>
+        </div>
+      )}
+
       {/* Add SVG icons */}
       <div className="navbar-icons">
         <img src={FranceFlag} alt="French flag" className="icon" />
@@ -44,9 +96,8 @@ function Navbar() {
         <img src={CartIcon} alt="Cart icon" className="icon" />
         <img src={UserIcon} alt="User icon" className="icon" />
       </div>
-
     </nav>
   );
-}
+};
 
 export default Navbar;
