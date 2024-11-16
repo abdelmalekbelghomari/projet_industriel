@@ -1,3 +1,6 @@
+body{
+  background-color: #f5ebe3;
+}
 /* Container for meal input fields */
 .meal-container {
     margin-bottom: 20px;

@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">Quicklibox</Link>
+        <Link to="/">EatyBox</Link>
       </div>
       <ul className="nav-menu">
         <li className="nav-item">
