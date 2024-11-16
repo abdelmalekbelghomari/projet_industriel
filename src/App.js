@@ -7,7 +7,7 @@ import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
 import Subscriptions from './Subscriptions';
-import GroceriesImage from './assets/images/groceries.png';
+//import GroceriesImage from './assets/images/groceries.png';
 import Footer from './components/Footer';
 import BoxSection from './components/BoxSection';
 import HowItWorksSection from './components/HowItWorksSection';

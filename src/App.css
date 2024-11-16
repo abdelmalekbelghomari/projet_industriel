@@ -94,3 +94,9 @@ box-cards-container {
   gap: 20px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .content-container{
+    background: #f5ebe3;
+  }
+}
