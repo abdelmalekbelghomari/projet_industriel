@@ -15,6 +15,7 @@ import ReviewsSection from './components/ReviewsSection';
 import './App.css';
 import ErrorPage from './Error'; // Import Error component
 import AboutPage from './About'; // Import About component
+import ContactPage from './Contact';
 
 function App() {
   const [menus, setMenus] = useState([]);
@@ -57,7 +58,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ErrorPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route
           path="/"
