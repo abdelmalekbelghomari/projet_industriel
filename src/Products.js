@@ -58,58 +58,66 @@ function Products() {
 
   if (!isAuthenticated) {
     return (
-      <div className="authentication-container">
-        <h2 className="text-3xl text-blue-800 mb-6 font-bold">Enter Password</h2>
-        <form onSubmit={handlePasswordSubmit} className="space-y-4">
-          <div>
-            <label className="block text-lg font-semibold mb-2">Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-              className="menu-input p-2 w-full border border-gray-400 rounded-md"
-            />
-          </div>
-          {error && <p className="text-red-500">{error}</p>}
-          <button type="submit" className="button bg-blue-500 text-white px-3 py-2 rounded-md">
-            Submit
-          </button>
-        </form>
+
+      <div className="flex flex-col min-h-screen">
+        <div className="authentication-container">
+          <h2 className="text-3xl text-customBlue mb-6 font-bold text-center">Enter Password</h2>
+          <form onSubmit={handlePasswordSubmit} className="space-y-4">
+            <div className="flex justify-center"> 
+              <label className="block text-lg font-semibold mb-2 mr-2">Password:</label> 
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+                className="menu-input p-2 w-1/2 border border-gray-400 rounded-md"
+              />
+            </div>
+            {error && <p className="text-red-500">{error}</p>}
+            <div className="flex justify-center"> {/* Center the submit button */}
+              <button type="submit" className="button bg-blue-500 text-white px-3 py-2 rounded-md">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="left-section p-8">
-      <h2 className="text-3xl text-blue-800 mb-6 font-bold">Insert Menus</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-lg font-semibold mb-2">Menu Name:</label>
-          <input
-            type="text"
-            value={menuName}
-            onChange={handleMenuNameChange}
-            required
-            className="menu-input p-2 w-full border border-gray-400 rounded-md"
-          />
-        </div>
-        {meals.map((meal, index) => (
-          <MenuEntry
-            key={index}
-            meal={meal}
-            index={index}
-            onMealChange={handleMealChange}
-            onRemoveMeal={removeMeal}
-          />
-        ))}
-        <button type="button" onClick={addMeal} className="button bg-blue-500 text-white px-3 py-2 rounded-md">
-          + Add Meal
-        </button>
-        <button type="submit" className="button bg-green-500 text-white px-4 py-2 rounded-md">
-          Submit
-        </button>
-      </form>
+    <div className="flex flex-col min-h-screen">
+    
+      <div className="left-section p-8">
+        <h2 className="text-3xl text-blue-800 mb-6 font-bold">Insert Menus</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-lg font-semibold mb-2">Menu Name:</label>
+            <input
+              type="text"
+              value={menuName}
+              onChange={handleMenuNameChange}
+              required
+              className="menu-input p-2 w-full border border-gray-400 rounded-md"
+            />
+          </div>
+          {meals.map((meal, index) => (
+            <MenuEntry
+              key={index}
+              meal={meal}
+              index={index}
+              onMealChange={handleMealChange}
+              onRemoveMeal={removeMeal}
+            />
+          ))}
+          <button type="button" onClick={addMeal} className="button bg-blue-500 text-white px-3 py-2 rounded-md">
+            + Add Meal
+          </button>
+          <button type="submit" className="button bg-green-500 text-white px-4 py-2 rounded-md">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

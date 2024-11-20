@@ -53,7 +53,6 @@ function App() {
   return (
     <Router>
       <Navbar />
-      {/* <div className="pt-24"></div> */}
       <Routes>
         <Route path="/products" element={<Products />} />
         <Route path="/subscriptions" element={<Subscriptions />} />

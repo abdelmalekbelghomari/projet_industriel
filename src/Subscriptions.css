@@ -3,3 +3,26 @@ body{
     /* margin: 0;
     padding: 0; */
 }
+
+/* Parent container for subscriptions page */
+.subscriptions-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+  
+/* Ensures content takes available space and pushes footer down */
+.subscriptions-content {
+    flex: 1; /* Grows to fill space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+  
+/* Optional styles for better alignment */
+.subscriptions-container .flex {
+    margin-top: 20px;
+}
+  
