@@ -1,0 +1,27 @@
+.partner-card {
+        flex: 0 0 350px; /* Increased width for the cards */
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px; /* Added more padding for better spacing inside the card */
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .partner-card img {
+        max-width: 120px; /* Increased the image size */
+        margin-bottom: 15px;
+        border-radius: 50%;
+      }
+      
+      .partner-card h3 {
+        font-size: 1.5rem; /* Increased font size for the title */
+        margin: 15px 0;
+      }
+      
+      .partner-card p {
+        font-size: 1rem; /* Increased font size for details */
+        color: #555;
+        line-height: 1.5;
+      }
+      

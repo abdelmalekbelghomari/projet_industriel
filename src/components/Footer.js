@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2024-2025 Ecolobox - Tous droits réservés - contact@ecolobox.com</p>
+        <p>© 2024-2025 EatyBox - Tous droits réservés - contact@eatybox.com</p>
       </div>
     </footer>
   );

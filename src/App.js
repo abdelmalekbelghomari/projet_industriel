@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard'; // Import MenuCard component
@@ -7,6 +7,7 @@ import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
 import Subscriptions from './Subscriptions';
+import Registration from './Registration';
 //import GroceriesImage from './assets/images/groceries.png';
 import Footer from './components/Footer';
 import BoxSection from './components/BoxSection';
@@ -14,16 +15,27 @@ import HowItWorksSection from './components/HowItWorksSection';
 import ReviewsSection from './components/ReviewsSection';
 import './App.css';
 import ErrorPage from './Error'; // Import Error component
+import PartnersSection from './components/PartnersSection';
+
 
 function App() {
+  const [cityQuery, setCityQuery] = useState('');
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showPartners, setShowPartners] = useState(false); // État pour PartnersSection
+  const partnersRef = useRef(null);
 
-  const handleSearch = (query) => {
-    console.log("Searching for:", query);
-    // Implement search logic here
+  const handleSearch = (searchQuery) => {
+    // Vous pouvez ajouter ici toute logique de recherche supplémentaire si nécessaire
+
+    // Afficher la section des partenaires
+    setCityQuery(searchQuery);
+    setShowPartners(true);
+    // Faire défiler vers la section des partenaires
+    if (partnersRef.current) {
+      partnersRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-
   // Fetch data from Firestore
   useEffect(() => {
     const fetchMenus = async () => {
@@ -59,6 +71,7 @@ function App() {
         <Route path="/about" element={<ErrorPage />} />
         <Route path="/contact" element={<ErrorPage />} />
         <Route path="/404" element={<ErrorPage />} />
+        <Route path="/vendre" element={<Registration/>} />
         <Route
           path="/"
           element={
@@ -86,6 +99,11 @@ function App() {
                   </div> */}
                 </div>
               </div>
+              {showPartners && (
+                <div ref={partnersRef}>
+                  <PartnersSection cityQuery={cityQuery}/>
+                </div>
+              )}
               <BoxSection />
               <HowItWorksSection />
               <ReviewsSection />

@@ -66,6 +66,11 @@ const Navbar = () => {
             Nous Contacter
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/vendre" className="nav-links">
+            Vendre chez EatyBox
+          </Link>
+        </li>
       </ul>
 
       {isMenuOpen && (
@@ -81,6 +86,9 @@ const Navbar = () => {
           </Link>
           <Link to="/contact" onClick={closeMenu}>
             Nous Contacter
+          </Link>
+          <Link to="/vendre" className="nav-links">
+            Vendre chez EatyBox
           </Link>
         </div>
       )}
