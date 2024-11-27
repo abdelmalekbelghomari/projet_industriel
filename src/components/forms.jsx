@@ -1,12 +1,62 @@
 import React, {useState} from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Form({title, description, phone, email, address}) {
 
-    const [activeButton, setActiveButton] = useState(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      const [statusMessage, setStatusMessage] = useState('');
+      const [activeButton, setActiveButton] = useState(null);
 
-    const handleClick = (buttonId) => {
+      const handleClick = (buttonId) => {
         setActiveButton(buttonId);
     };
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        const serviceID = 'your_service_id'; // Replace with your EmailJS service ID
+        const templateID = 'your_template_id'; // Replace with your EmailJS template ID
+        const userID = 'your_user_id'; // Replace with your EmailJS user ID
+    
+        const templateParams = {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        };
+    
+        emailjs
+          .send(serviceID, templateID, templateParams, userID)
+          .then(
+            (response) => {
+              console.log('SUCCESS!', response.status, response.text);
+              setStatusMessage('Votre message a été envoyé avec succès.');
+              setFormData({
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
+              });
+            },
+            (error) => {
+              console.error('Erreur lors de l\'envoi de l\'e-mail:', error);
+              setStatusMessage('Une erreur s\'est produite. Veuillez réessayer.');
+            }
+          );
+      };
 
     return (
         <div class="mt-6 max-w-6xl max-lg:max-w-3xl mx-auto bg-customBlue rounded-lg">
@@ -119,22 +169,23 @@ export default function Form({title, description, phone, email, address}) {
                         </button>
                     </div>
 
-                    <form class="mt-8 space-y-4">
-                        <input type='text' placeholder='Name'
+                    <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
+                        <input type='text' name ='name' placeholder='Name' value={formData.name} onChange={handleChange} required
                             class="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#a91079]" />
-                        <input type='email' placeholder='Email'
+                        <input type='email' name ='email' placeholder='Email' value={formData.email} onChange={handleChange} required
                             class="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#a91079]" />
-                        <input type='text' placeholder='Subject'
+                        <input type='text' name ='subject' placeholder='Subject' value={formData.subject} onChange={handleChange} required
                             class="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#a91079]" />
-                        <textarea placeholder='Message' rows="6"
+                        <textarea placeholder='Message' name ='message' rows="6" value={formData.message} onChange={handleChange} required
                             class="w-full rounded-lg px-4 text-gray-800 text-sm pt-3 outline-[#a91079]"></textarea>
-                        <button type='button'
+                        <button type='submit'
                             class="text-white bg-customRed hover:bg-customBlue tracking-wide rounded-lg text-sm px-4 py-3 flex items-center justify-center w-full !mt-6">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill='#fff' class="mr-2" viewBox="0 0 548.244 548.244">
                                 <path fill-rule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clip-rule="evenodd" data-original="#000000" />
                             </svg>
                             Send Message
                         </button>
+                        {statusMessage && <p className="mt-4 text-sm text-green-500">{statusMessage}</p>}
                     </form>
                 </div>
             </div>
