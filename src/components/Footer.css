@@ -7,11 +7,12 @@
   flex-wrap: wrap;
   justify-content: space-around;
   text-align: left;
-  border-radius: 20px
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 footer {
-  margin-top: auto; /* Pushes the footer to the bottom */
+  margin-top: auto;
 }
 
 .footer-section {
