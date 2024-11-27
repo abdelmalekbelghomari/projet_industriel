@@ -16,6 +16,7 @@ import ReviewsSection from './components/ReviewsSection';
 import './App.css';
 import ErrorPage from './Error'; // Import Error component
 import PartnersSection from './components/PartnersSection';
+import ManagePartners from './ManagePartners';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
         <Route path="/contact" element={<ErrorPage />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/vendre" element={<Registration/>} />
+        <Route path="/partenaires" element={<ManagePartners/>} />
         <Route
           path="/"
           element={

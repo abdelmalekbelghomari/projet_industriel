@@ -1,0 +1,62 @@
+.manage-partners {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      
+      .partners-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .partner-container {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .partner-container p {
+        margin: 5px 0;
+      }
+      
+      .buttons {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      
+      .approve-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .approve-btn:hover {
+        background-color: #218838;
+      }
+      
+      .remove-btn {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .remove-btn:hover {
+        background-color: #c82333;
+      }
+      

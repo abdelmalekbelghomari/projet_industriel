@@ -71,6 +71,11 @@ const Navbar = () => {
             Vendre chez EatyBox
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/partenaires" className="nav-links">
+            Gestion des partenaires
+          </Link>
+        </li>
       </ul>
 
       {isMenuOpen && (
