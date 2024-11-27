@@ -1,33 +1,99 @@
 /* Search box styling */
 .search-box {
-        display: flex;
-        margin-top: 20px;
-        width: 100%;
-        max-width: 500px;
-        border-radius: 30px;
-        overflow: hidden;
-      }
-      
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 30px;
+  /* overflow: hidden; */ /* Supprimé */
+  position: relative; /* Ajouté */
+}
+
 .search-box input {
-        padding: 15px;
-        font-size: 1.2rem;
-        border: 1px solid #ccc;
-        flex-grow: 1;
-        border-radius: 30px 0 0 30px;
-        border-right: none;
-      }
-      
-      .search-box button {
-        background-color: #ff4c4c;
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        border-radius: 0 30px 30px 0;
-        transition: background-color 0.3s ease;
-      }
-      
-      .search-box button:hover {
-        background-color: #d43f3f;
-      }
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  flex-grow: 1;
+  border-radius: 30px 0 0 30px;
+  border-right: none;
+}
+
+.search-box button {
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #d43f3f;
+}
+
+.search-box button:disabled {
+  background-color: #ccc; /* Gris clair */
+  cursor: not-allowed; /* Curseur pour indiquer que le bouton est verrouillé */
+  opacity: 0.6; /* Réduire l'opacité pour indiquer l'état désactivé */
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%; /* Positionne juste en dessous de la barre de recherche */
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none; /* Évite la double bordure entre l'input et les suggestions */
+  border-radius: 0 0 4px 4px;
+  max-height: 200px; /* Limite la hauteur */
+  overflow-y: auto; /* Ajoute un scroll si nécessaire */
+  z-index: 1000; /* Assure que les suggestions apparaissent au-dessus d'autres éléments */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour la profondeur */
+  border-radius: 30px;
+}
+
+.suggestion-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background-color: #f0f0f0;
+}
+
+.loading-indicator,
+.error-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.error-message {
+  color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .search-box {
+    max-width: 90%;
+  }
+
+  .search-box input {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+
+  .search-box button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .suggestion-item {
+    padding: 8px 12px;
+  }
+}
