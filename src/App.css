@@ -17,6 +17,12 @@ body, .app-container {
   background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%);
 }
 
+@media (max-width: 767px) {
+  body, .app-container {
+    background: #f5ebe3;
+  }
+}
+
 /* Navbar Styles */
 .navbar, .nav-links {
   font-family: 'Costa Std', sans-serif;

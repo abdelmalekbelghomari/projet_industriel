@@ -51,8 +51,8 @@ function SubCard({ title, image, rating, price, large, disabled }) {
         <div className={`sub-card 
             ${large ? "large" : ""}
             ${!large && disabledClass === "disabled" ? "disabled" : ""}
-            w-full max-w-sm bg-customRed border border-gray-200 rounded-lg shadow 
-            ${large ? "scale-110 shadow-lg border-customRed-500" : ""}`}>
+             max-w-sm bg-customRed border border-gray-200 rounded-lg shadow 
+            ${large ? "scale-100 shadow-lg border-customRed-500" : ""}`}>
             <a href="/">
                 <img className="p-8 rounded-t-lg" src={image} alt="product" />
             </a>
