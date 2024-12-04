@@ -103,7 +103,9 @@ const Navbar = () => {
         <img src={FranceFlag} alt="French flag" className="icon" />
         <img src={LocationIcon} alt="Location icon" className="icon" />
         <img src={CartIcon} alt="Cart icon" className="icon" />
-        <img src={UserIcon} alt="User icon" className="icon" />
+        <Link to="/profile" className='nav-links'>
+          <img src={UserIcon} alt="User icon" className="icon" />
+        </Link>
       </div>
     </nav>
   );
