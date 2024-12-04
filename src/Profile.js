@@ -1,13 +1,12 @@
 import React from 'react';
 import LoginForm from './components/LoginFrom'
-import { divIcon } from 'leaflet';
 
 
 export default function ProfilePage() {
-    const title = "No Bitches?";
+    const link = "/selectRole";
     return (
         <div>
-            <LoginForm/>
+            <LoginForm link={link} />
         </div>
     )
 }
