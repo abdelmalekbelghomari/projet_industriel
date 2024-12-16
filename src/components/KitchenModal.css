@@ -1,0 +1,37 @@
+.kitchen-icons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-items: center;
+        text-align: center;
+      }
+      
+      .kitchen-icons button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+        color: #4a4a4a;
+        transition: color 0.3s, transform 0.3s;
+      }
+      
+      .kitchen-icons button .kitchen-icon {
+        width: 50px;
+        height: 50px;
+        fill: #ccc; /* Default color */
+        transition: fill 0.3s, transform 0.3s;
+      }
+      
+      .kitchen-icons button.selected {
+        color: #e74c3c; /* Red text for selected equipment */
+      }
+      
+      .kitchen-icons button.selected .kitchen-icon {
+        fill: #e74c3c; /* Red icon for selected equipment */
+        transform: scale(1.1); /* Slightly enlarge selected icon */
+      }
+      

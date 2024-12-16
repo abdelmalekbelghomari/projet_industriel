@@ -19,7 +19,7 @@ import AboutPage from './About'; // Import About component
 import ContactPage from './Contact';
 import PartnersSection from './components/PartnersSection';
 import ManagePartners from './ManagePartners';
-import ProfilePage from './Profile';
+import ProfilePage from './UserSubscription';
 
 
 function App() {

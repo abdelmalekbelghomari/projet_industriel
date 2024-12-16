@@ -1,0 +1,38 @@
+.goals-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .goals-list button {
+        background: #fcece6;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: #4a4a4a;
+        transition: background-color 0.3s, color 0.3s;
+        text-align: left;
+        width: 100%;
+      }
+      
+      .goals-list button.selected {
+        background: #ffe5e0;
+        color: #e74c3c; /* Highlight text in red when selected */
+      }
+      
+      .goals-list button.selected .goal-icon {
+        fill: #e74c3c; /* Highlight icon in red when selected */
+      }
+      
+      .goal-icon {
+        width: 40px;
+        height: 40px;
+        fill: #ccc; /* Default color */
+        transition: fill 0.3s;
+      }
+      
