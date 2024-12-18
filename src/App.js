@@ -20,6 +20,9 @@ import ContactPage from './Contact';
 import PartnersSection from './components/PartnersSection';
 import ManagePartners from './ManagePartners';
 import UserSubscriptionPage from './UserSubscription';
+import ProfilePage from './Profile';
+import VendorOrCustomer from './VendorOrCustomer';
+import VendorRegistrationPage from './VendorRegistrationPage';
 
 
 function App() {
@@ -76,7 +79,10 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/vendre" element={<Registration/>} />
         <Route path="/partenaires" element={<ManagePartners/>} />
-        <Route path="/profile" element={<UserSubscriptionPage/>} />
+        <Route path="/userRegistration" element={<UserSubscriptionPage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/selectRole" element={<VendorOrCustomer/>}/>
+        <Route path='/vendorRegistration' element={<VendorRegistrationPage/>}/>
         <Route
           path="/"
           element={

@@ -32,7 +32,7 @@ const UserSubscriptionPage = () => {
   const CurrentModal = modals[currentModal]; // Récupère le composant actuel
 
   return (
-    <div>
+    <div class="min-h-screen flex flex-col items-center justify-center">
       {/* Modal actuel s'affiche ici */}
       <CurrentModal onClose={handleClose} onNext={handleNext} />
     </div>
