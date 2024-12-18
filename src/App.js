@@ -19,7 +19,7 @@ import AboutPage from './About'; // Import About component
 import ContactPage from './Contact';
 import PartnersSection from './components/PartnersSection';
 import ManagePartners from './ManagePartners';
-import ProfilePage from './UserSubscription';
+import UserSubscriptionPage from './UserSubscription';
 
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/vendre" element={<Registration/>} />
         <Route path="/partenaires" element={<ManagePartners/>} />
-        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/profile" element={<UserSubscriptionPage/>} />
         <Route
           path="/"
           element={

@@ -5,7 +5,7 @@ import KitchenModal from './components/KitchenModal';
 import GoalsModal from './components/GoalsModal';
 import HouseholdModal from './components/HouseholdModal';
 
-const ProfilePage = () => {
+const UserSubscriptionPage = () => {
   const [currentModal, setCurrentModal] = useState(0); // État pour suivre l'index du modal affiché
 
   const modals = [
@@ -39,4 +39,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default UserSubscriptionPage;
