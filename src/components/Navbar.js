@@ -46,11 +46,11 @@ const Navbar = () => {
         ☰
       </div>
       <ul className="nav-menu">
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link to="/products" className="nav-links">
             Nos Produits
           </Link>
-        </li>
+        </li> */}
         <li className="nav-item">
           <Link to="/subscriptions" className="nav-links">
             Nos Abonnements
@@ -80,9 +80,9 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className="mobile-menu" ref={menuRef}>
-          <Link to="/products" onClick={closeMenu}>
+          {/* <Link to="/products" onClick={closeMenu}>
             Nos Produits
-          </Link>
+          </Link> */}
           <Link to="/subscriptions" onClick={closeMenu}>
             Nos Abonnements
           </Link>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 export default function VendorRegistrationForm({logoPath}){
     return (
@@ -47,9 +48,11 @@ export default function VendorRegistrationForm({logoPath}){
                     </div>
                     </div>
                     <div class="!mt-12">
-                    <button type="button" class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-customBlue hover:bg-customRed focus:outline-none">
-                        S'inscrire
-                    </button>
+                    <Link to="/products" className="nav-links">
+                        <button type="button" class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-customBlue hover:bg-customRed focus:outline-none">
+                            S'inscrire
+                        </button>
+                    </Link>
                     </div>
                 </form>
             </div>
