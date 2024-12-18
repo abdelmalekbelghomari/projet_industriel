@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard'; // Import MenuCard component
 import SearchBox from './components/SearchBox';
+import Carousel from './components/Carousel'
 import db from './firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 import Products from './Products';
@@ -21,6 +22,7 @@ import PartnersSection from './components/PartnersSection';
 import ManagePartners from './ManagePartners';
 import ProfilePage from './Profile';
 import VendorOrCustomer from './VendorOrCustomer';
+import VendorRegistrationPage from './VendorRegistrationPage';
 
 
 function App() {
@@ -79,15 +81,20 @@ function App() {
         <Route path="/partenaires" element={<ManagePartners/>} />
         <Route path="/profile" element={<ProfilePage/>} />
         <Route path="/selectRole" element={<VendorOrCustomer/>}/>
+        <Route path='/vendorRegistration' element={<VendorRegistrationPage/>}/>
         <Route
           path="/"
           element={
             <>
               <div className="content-container">
                 <div className="main-section">
+                  <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
                   <h1>Découvrez si nous livrons chez vous</h1>
                   <SearchBox onSearch={handleSearch} />
-                  <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
+                  <Carousel />
+                  <div className='text-customRed'>
+                    <p> Les Menus Populaires cette semaine : </p>
+                  </div>
                   <div className="flex flex-wrap justify-center mt-8">
                     {loading ? (
                       <h1>Loading...</h1>

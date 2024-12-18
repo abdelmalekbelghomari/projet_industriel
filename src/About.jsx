@@ -66,7 +66,7 @@ export default function VendorList() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div class="min-h-screen flex flex-col items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
         {vendors.map((vendor, index) => (
           <VendorCard

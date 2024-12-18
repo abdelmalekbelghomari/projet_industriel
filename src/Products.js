@@ -30,10 +30,17 @@ function Products() {
   const handleMealChange = (index, e) => {
     const { name, value } = e.target;
     const newMeals = [...meals];
-    if (name === 'mealName') newMeals[index].name = value;
-    else newMeals[index].ingredients = value.split(',').map((ing) => ing.trim());
+  
+    if (name === 'mealName') {
+      newMeals[index].name = value;
+    } else if (name === 'ingredients') {
+      // Ensure ingredients is always an array
+      newMeals[index].ingredients = value.split(',').map((ing) => ing.trim());
+    }
+  
     setMeals(newMeals);
   };
+  
 
   const addMeal = () => setMeals([...meals, { name: '', ingredients: [''] }]);
   const removeMeal = (index) => setMeals(meals.filter((_, i) => i !== index));
@@ -41,20 +48,29 @@ function Products() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const parsedData = { menuName, meals };
+  
+    // Ensure all meals have an array for ingredients before joining
+    parsedData.meals = parsedData.meals.map(meal => ({
+      ...meal,
+      ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : meal.ingredients.split(',').map(i => i.trim())
+    }));
+  
     const menusCollectionRef = collection(db, 'menus');
     const existingMenusSnapshot = await getDocs(menusCollectionRef);
-
+  
     const menuExists = existingMenusSnapshot.docs.some((doc) => doc.data().menuName === parsedData.menuName);
     if (menuExists) {
       alert('This menu already exists in the database!');
       return;
     }
+  
     const menuDocRef = doc(menusCollectionRef);
     await setDoc(menuDocRef, parsedData);
     alert('Menu successfully added to the database!');
     setMenuName('');
     setMeals([{ name: '', ingredients: [''] }]);
   };
+  
 
   if (!isAuthenticated) {
     return (

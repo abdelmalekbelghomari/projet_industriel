@@ -10,6 +10,9 @@ module.exports = {
         customRedDark: "#B32421",
         customBlue: "#1E1E4C",
       },
+      fontFamily: {
+        costaStd: ['Costa Std', 'sans-serif'],
+      },
     },
   },
   plugins: [],

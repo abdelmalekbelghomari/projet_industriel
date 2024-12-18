@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Costa Std';
+    src: url('./assets/fonts/fonnts.com-Costa_Std.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }

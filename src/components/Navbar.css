@@ -1,163 +1,177 @@
-
 @font-face {
-    font-family: 'Costa Std';
-    src: url('../assets/fonts/fonnts.com-Costa_Std.otf') format('opentype'); /* Assurez-vous que le chemin est correct */
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* Applique la police dans le navbar */
-  .navbar, .nav-links {
-    font-family: 'Costa Std', sans-serif; /* Utiliser la police Costa Std */
-  }
-/* Navbar Styles */
+  font-family: 'Costa Std';
+  src: url('../assets/fonts/fonnts.com-Costa_Std.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply font globally */
+.navbar, .nav-links {
+  font-family: 'Costa Std', sans-serif;
+}
+
 /* Navbar Styles */
 .navbar {
-    /* position: fixed; */
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 20px;
-    z-index: 10;
-    font-family: 'Costa Std', sans-serif;
-    background: transparent;
-    /* background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%); */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 10;
+  font-family: 'Costa Std', sans-serif;
+  background: linear-gradient(to left, #d62d2a 35%, #f5ebe3 0%);
+  background-size: 200% 100%; 
+  background-position: 100% 0; 
+  transition: background-size 2s ease, background-position 2s ease;
 }
 
-/* Right background section for the red color */
+.navbar:hover {
+  background-size: 100% 100%;
+  background-position: 0 0; 
+}
+
+
+/* .navbar-scrolled {
+  background: linear-gradient(to left, #d62d2a 100%, #f5ebe3 0%);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: background 0.5s ease-in-out; 
+} */
+
+
+
+/* Red background section */
 .navbar-right-bg {
-    background-color: #ff4c4c;
-    width: 40%; /* Adjust to match the right-section width in App.js */
-    height: 100%; /* Full navbar height */
-    position: absolute;
-    top: 0;
-    right: 0; /* Align to the right */
-    z-index: -1; /* Place it behind other navbar content */
+  background-color: #ff4c4c;
+  width: 40%; /* Matches the right section width */
+  height: 100%; /* Full navbar height */
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1; /* Behind navbar content */
 }
 
-  
-  /* Ajustement de la largeur du menu */
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding-left: 20px;
-    justify-content: flex-start;
-  }
-  
-  .nav-item {
-    margin-left: 10px;
-  }
-  
-  .nav-links {
-    color: #2e205f;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    text-transform: none;
-    white-space: nowrap;
-  }
-  
-  /* Effet de survol */
-  .nav-links:hover {
-    color: #ff4c4c;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  /* Navbar icons styling */
-  .navbar-icons {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-  
-  .navbar-icons .icon {
-    margin-left: 15px;
-    width: 24px;
-    height: 24px;
-  }
-  
-  .navbar-icons i {
-    color: #2e205f;
-    font-size: 1.5rem;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .navbar-icons i:hover {
-    color: #ff4c4c;
-  }
+/* Adjust navigation menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding-left: 20px;
+  justify-content: flex-start;
+}
 
-  /* Navbar logo styling */
+.nav-item {
+  margin-left: 10px;
+}
+
+.nav-links {
+  color: #2e205f;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+/* Hover effect */
+.nav-links:hover {
+  color: #ff4c4c;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Navbar icons styling */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-icons .icon {
+  margin-left: 15px;
+  width: 24px;
+  height: 24px;
+}
+
+.navbar-icons i {
+  color: #2e205f;
+  font-size: 1.5rem;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-icons i:hover {
+  color: #ff4c4c;
+}
+
+/* Navbar logo styling */
 .navbar-logo a {
-    color: #222153;
-    font-size: 2.5rem; /* Augmente la taille de la police, tu peux ajuster selon tes préférences */
-    font-weight: bold;
-    text-decoration: none;
-  }
+  color: #222153;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-  .logo-image {
-    width: 120px; /* Adjust size as needed */
-    height: auto;
-  }
+.logo-image {
+  width: 120px;
+  height: auto;
+}
 
-  .hamburger {
-    display: none;
-  }
+/* Hamburger menu */
+.hamburger {
+  display: none;
+}
 
-/* Mobile Menu Toggle Icon */
+/* Mobile menu toggle icon */
 .icon-menu {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #f5ebe3;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  z-index: 10;
+}
+
+.mobile-menu a {
+  color: #2b1a46;
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar {
+      background: #f5ebe3;
   }
-  
-  /* Mobile Menu Styling */
+  .nav-menu {
+      display: none;
+  }
+  .hamburger {
+      display: block;
+      font-size: 2rem;
+      cursor: pointer;
+      margin-left: 20px;
+  }
   .mobile-menu {
-    display: none;
-    flex-direction: column;
-    background-color: #f5ebe3;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    width: 200px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    z-index: 10;
+      display: flex;
+      right: 100px;
   }
-  
-  .mobile-menu a {
-    color: #2b1a46;
-    text-decoration: none;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .mobile-menu a:last-child {
-    border-bottom: none;
-  }
-  
-  /* Responsive Styling */
-  @media (max-width: 768px) {
-    .navbar {
-        background: #f5ebe3;
-    }     
-    .nav-menu {
-        display: none; 
-    }
-    
-    .hamburger {
-        display: block; /* Initially hidden, only shown in mobile view */
-        font-size: 2rem; /* Increase the size of the hamburger icon */
-        cursor: pointer;
-        margin-left: 20px; /* Add some space between the hamburger icon and the logo */
-      }
-    
-      .mobile-menu {
-        display: flex; /* Show mobile dropdown menu when open */
-        right: 100px;
-      } 
-  }
+}
