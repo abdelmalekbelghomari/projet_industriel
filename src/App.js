@@ -29,16 +29,12 @@ function App() {
   const [cityQuery, setCityQuery] = useState('');
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showPartners, setShowPartners] = useState(false); // État pour PartnersSection
+  const [showPartners, setShowPartners] = useState(false);
   const partnersRef = useRef(null);
 
   const handleSearch = (searchQuery) => {
-    // Vous pouvez ajouter ici toute logique de recherche supplémentaire si nécessaire
-
-    // Afficher la section des partenaires
     setCityQuery(searchQuery);
     setShowPartners(true);
-    // Faire défiler vers la section des partenaires
     if (partnersRef.current) {
       partnersRef.current.scrollIntoView({ behavior: 'smooth' });
     }
