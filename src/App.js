@@ -14,8 +14,8 @@ import BoxSection from './components/BoxSection';
 import HowItWorksSection from './components/HowItWorksSection';
 import ReviewsSection from './components/ReviewsSection';
 import './App.css';
-import ErrorPage from './Error'; // Import Error component
-import AboutPage from './About'; // Import About component
+import ErrorPage from './Error';
+import AboutPage from './About';  
 import ContactPage from './Contact';
 import PartnersSection from './components/PartnersSection';
 import ManagePartners from './ManagePartners';
@@ -23,6 +23,7 @@ import UserSubscriptionPage from './UserSubscription';
 import ProfilePage from './Profile';
 import VendorOrCustomer from './VendorOrCustomer';
 import VendorRegistrationPage from './VendorRegistrationPage';
+import Dashboard from './Dashborad';
 
 
 function App() {
@@ -39,7 +40,6 @@ function App() {
       partnersRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  // Fetch data from Firestore
   useEffect(() => {
     const fetchMenus = async () => {
       try {
@@ -79,6 +79,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage/>} />
         <Route path="/selectRole" element={<VendorOrCustomer/>}/>
         <Route path='/vendorRegistration' element={<VendorRegistrationPage/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
         <Route
           path="/"
           element={
