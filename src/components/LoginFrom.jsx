@@ -14,7 +14,7 @@ export default function LoginForm({ link }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/404');
+      navigate('/dashboard');
     } catch (error) {
       setError('Failed to log in. Please check your credentials and try again.');
     }
@@ -28,7 +28,7 @@ export default function LoginForm({ link }) {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       console.log("User Info:", user);
-      navigate('/404');
+      navigate('/dashboard');
     } catch (error) {
       console.error("Error during Google Sign In:", error.message);
       setError('Failed to log in with Google.');
