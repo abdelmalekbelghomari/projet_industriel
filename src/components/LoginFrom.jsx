@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, OAuthProvider, FacebookAuthProvider} from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
+import { doc, setDoc, getDoc} from 'firebase/firestore';
+import {db, auth} from '../firebaseConfig';
 
 export default function LoginForm({ link }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const db = getFirestore();
   
 
   const handleSubmit = async (e) => {
@@ -28,7 +28,6 @@ export default function LoginForm({ link }) {
   };
 
   const handleGoogleSignIn = async () => {
-    const auth = getAuth();
     const provider = new GoogleAuthProvider();
     
     try {
