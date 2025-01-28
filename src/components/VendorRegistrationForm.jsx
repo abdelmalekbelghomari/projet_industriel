@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import Cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
 
 const registerUser = async (email, password, firstName, lastName, phone, setMessage, setShowModal) => {
+
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     console.log("User registered:", userCredential.user);
 
     if (userCredential.user) {
       await sendEmailVerification(userCredential.user);
+
+      const token = await userCredential.user.getIdToken();
+      Cookies.set("auth_token", token, { expires: 0.0208 }); 
+
       setMessage(`Merci ${firstName} ! Un email de confirmation a été envoyé. Veuillez vérifier votre boîte mail.`);
       setShowModal(true);
+      
+
     }
   } catch (error) {
     console.error("Error registering user:", error.message);
@@ -28,6 +37,7 @@ export default function VendorRegistrationForm() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +58,7 @@ export default function VendorRegistrationForm() {
     setPassword('');
     setConfirmPassword('');
     setMessage('');
+    navigate('/selectRole');
   };
 
 

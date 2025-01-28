@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Cookies from "js-cookie";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, OAuthProvider, FacebookAuthProvider} from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
 
 export default function LoginForm({ link }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const db = getFirestore();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const auth = getAuth();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/404');
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const user = result.user;
+      const token = await user.getIdToken();
+      Cookies.set("auth_token", token, { expires: 0.0208 });
+      navigate('/dashboard');
     } catch (error) {
       setError('Failed to log in. Please check your credentials and try again.');
     }
@@ -26,9 +33,29 @@ export default function LoginForm({ link }) {
     
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log("User Info:", user);
-      navigate('/404');
+      const user = result.user; 
+      const token = await user.getIdToken();
+
+      const userRef = doc(db, "users", user.uid);
+
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        Cookies.set("auth_token", token, { expires: 0.0208 });
+        console.log("User Info:", user);
+        navigate('/dashboard');
+      } else {
+        await setDoc(userRef, {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        }, { merge: true });
+
+        Cookies.set("auth_token", token, { expires: 0.0208 });
+        console.log("First time user. Redirecting to select role.");
+        navigate('/googleAuth'); 
+      }
     } catch (error) {
       console.error("Error during Google Sign In:", error.message);
       setError('Failed to log in with Google.');

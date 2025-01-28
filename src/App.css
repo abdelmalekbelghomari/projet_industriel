@@ -14,7 +14,7 @@
 /* Applique la police dans toute l'application */
 body, .app-container {
   font-family: 'Costa Std', sans-serif;
-  background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%);
+  /* background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%); */
 }
 
 @media (max-width: 767px) {
@@ -36,7 +36,7 @@ body, .app-container {
 /* Content wrapper to split left and right sections */
 .content-container {
   display: flex;
-  background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%);
+  /* background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%); */
   align-items: center;
   justify-content: center;
   padding: 20px;
