@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function SideNavbar() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        Cookies.remove('auth_token');
+        navigate('/profile');
+    };
+
     return (
         <div className="mb-auto w-64 bg-customBlue text-white left-0 pb-3 rounded-tr-lg rounded-br-lg">
             <ul className="flex flex-col mt-4 space-y-2">
@@ -76,6 +84,11 @@ export default function SideNavbar() {
                     >
                         Configurations du site
                     </Link>
+                </li>
+                <li>
+                    <button onClick={handleLogout} className="block py-3 px-6 hover:text-customRed rounded-md">
+                        Deconnexion
+                    </button>
                 </li>
             </ul>
         </div>

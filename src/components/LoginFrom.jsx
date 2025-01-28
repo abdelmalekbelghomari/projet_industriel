@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Cookies from "js-cookie";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, OAuthProvider, FacebookAuthProvider} from 'firebase/auth';
 
 export default function LoginForm({ link }) {
@@ -7,13 +8,17 @@ export default function LoginForm({ link }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const auth = getAuth();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const user = result.user;
+      const token = await user.getIdToken();
+      Cookies.set("auth_token", token, { expires: 0.0208 });
       navigate('/dashboard');
     } catch (error) {
       setError('Failed to log in. Please check your credentials and try again.');
@@ -26,9 +31,11 @@ export default function LoginForm({ link }) {
     
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
+      const user = result.user; // Obtenez les informations utilisateur
+      const token = await user.getIdToken(); // Obtenez le token d'identification
+      Cookies.set("auth_token", token, { expires: 0.0208 }); // Définit le cookie avec un nom spécifique
       console.log("User Info:", user);
-      navigate('/dashboard');
+      navigate('/dashboard'); // Redirige vers le tableau de bord
     } catch (error) {
       console.error("Error during Google Sign In:", error.message);
       setError('Failed to log in with Google.');
