@@ -22,8 +22,11 @@ export default function Dashboard() {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if(!Cookies.get("auth_token")) {
-            navigate("/profile");
+        const cookie = Cookies.get('auth_token');
+        if (cookie) {
+            navigate('/dashboard'); 
+        } else {
+            navigate('/profile');
         }
     }, [navigate]);
     

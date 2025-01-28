@@ -7,10 +7,18 @@ export default function ProfilePage() {
     const link = "/vendorRegistration";
 
     useEffect(() => {
-        const cookies = document.cookie;
-        if (cookies.includes('auth_token')) {
-            navigate('/dashboard');
-        }
+        const checkAuth = async () => {
+            try {
+                const cookies = await Promise.resolve(document.cookie);
+                if (cookies.includes('auth_token')) {
+                    navigate('/dashboard'); 
+                }
+            } catch (error) {
+                console.error("Erreur lors de la vérification des cookies :", error);
+            }
+        };
+
+        checkAuth();
     }, [navigate]);
 
     return (

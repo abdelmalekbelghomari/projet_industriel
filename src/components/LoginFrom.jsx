@@ -14,16 +14,39 @@ export default function LoginForm({ link }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const auth = getAuth();
 
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const user = result.user;
+      console.log("User Info:", user);
       const token = await user.getIdToken();
-      Cookies.set("auth_token", token, { expires: 0.0208 });
-      navigate('/dashboard');
-    } catch (error) {
-      setError('Failed to log in. Please check your credentials and try again.');
+      const userRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+          Cookies.set("auth_token", token, { expires: 0.0208 });
+          console.log("User Info:", user);
+          navigate('/dashboard');
+      } else {
+          await setDoc(
+              userRef,
+              {
+                  email: user.email,
+                  displayName: user.displayName || "Anonymous",
+                  photoURL: user.photoURL || null, // Default to null if no photoURL
+                  uid: user.uid,
+              },
+              { merge: true }
+          );
+
+          Cookies.set("auth_token", token, { expires: 0.0208 });
+          console.log("New user registered. Redirecting to select role.");
+          navigate('/googleAuth'); // Change the route as per your flow
+        }
+
+      } catch (error) {
+        console.error("Error during email/password sign-in:", error.message);
+        setError('Failed to log in. Please check your credentials and try again.');
     }
   };
 
