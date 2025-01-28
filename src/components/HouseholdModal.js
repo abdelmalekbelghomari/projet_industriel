@@ -3,12 +3,18 @@ import ProfileModal from './ProfileModal';
 import { ReactComponent as Sticker } from '../assets/icons/stickman.svg'; // Import SVG as React Component
 import './HouseholdModal.css';
 
-const HouseholdModal = ({ onClose, onNext }) => {
+const HouseholdModal = ({ onClose, onNext, onSave}) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
   const handleAdultClick = (count) => setAdults(count);
   const handleChildrenClick = (count) => setChildren(count);
+
+  const handleNext = () => {
+    onSave({ adults, children }); // Envoie les données au parent
+    onNext(); // Passe au modal suivant
+  };
+
 
   return (
     <ProfileModal
@@ -16,7 +22,7 @@ const HouseholdModal = ({ onClose, onNext }) => {
       title="Votre foyer"
       subtitle="Dites nous tout sur votre chez vous"
       onClose={onClose}
-      onNext={onNext}
+      onNext={handleNext}
     >
       <div className="household-section">
         <div className="category">

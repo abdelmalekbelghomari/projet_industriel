@@ -17,7 +17,7 @@ const INGREDIENTS_LIST = [
   "Chocolat",
 ];
 
-const TasteModal = ({ onClose, onNext }) => {
+const TasteModal = ({ onClose, onNext, onSave }) => {
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
 
@@ -35,13 +35,18 @@ const TasteModal = ({ onClose, onNext }) => {
     );
   };
 
+  const handleNext = () => {
+    onSave({ dislikedIngredients: selected }); // Transmet les ingrédients sélectionnés au parent
+    onNext(); // Passe au modal suivant
+  };
+
   return (
     <ProfileModal
       progress={50}
       title="Vos goûts"
       subtitle="En plus des régimes, y a-t-il des ingrédients que vous n'aimez pas ?"
       onClose={onClose}
-      onNext={onNext}
+      onNext={handleNext}
     >
       {/* Barre de recherche */}
       <div className="search-container">
