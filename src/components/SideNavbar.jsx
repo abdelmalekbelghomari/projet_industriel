@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SideNavbar() {
     return (
-        <div className="mt-auto w-64 bg-customBlue text-white left-0 pb-3 rounded-tr-lg rounded-br-lg">
+        <div className="mb-auto w-64 bg-customBlue text-white left-0 pb-3 rounded-tr-lg rounded-br-lg">
             <ul className="flex flex-col mt-4 space-y-2">
                 <li>
                     <Link
@@ -26,7 +26,7 @@ export default function SideNavbar() {
                         to="/dashboard"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
-                        Commande
+                        Commandes
                     </Link>
                 </li>
                 <li>
@@ -34,7 +34,7 @@ export default function SideNavbar() {
                         to="/dashboard"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
-                        Statistique
+                        Statistiques
                     </Link>
                 </li>
                 <li>
