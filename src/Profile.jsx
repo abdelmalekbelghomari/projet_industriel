@@ -4,7 +4,7 @@ import LoginForm from './components/LoginFrom';
 
 export default function ProfilePage() {
     const navigate = useNavigate();
-    const link = "/selectRole";
+    const link = "/vendorRegistration";
 
     useEffect(() => {
         const cookies = document.cookie;

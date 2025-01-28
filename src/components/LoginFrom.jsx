@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, OAuthProvider, FacebookAuthProvider} from 'firebase/auth';
+import { getFirestore, doc, setDoc, getDoc} from 'firebase/firestore';
 
 export default function LoginForm({ link }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const db = getFirestore();
   
 
   const handleSubmit = async (e) => {
@@ -31,11 +33,29 @@ export default function LoginForm({ link }) {
     
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user; // Obtenez les informations utilisateur
-      const token = await user.getIdToken(); // Obtenez le token d'identification
-      Cookies.set("auth_token", token, { expires: 0.0208 }); // Définit le cookie avec un nom spécifique
-      console.log("User Info:", user);
-      navigate('/dashboard'); // Redirige vers le tableau de bord
+      const user = result.user; 
+      const token = await user.getIdToken();
+
+      const userRef = doc(db, "users", user.uid);
+
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        Cookies.set("auth_token", token, { expires: 0.0208 });
+        console.log("User Info:", user);
+        navigate('/dashboard');
+      } else {
+        await setDoc(userRef, {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        }, { merge: true });
+
+        Cookies.set("auth_token", token, { expires: 0.0208 });
+        console.log("First time user. Redirecting to select role.");
+        navigate('/googleAuth'); 
+      }
     } catch (error) {
       console.error("Error during Google Sign In:", error.message);
       setError('Failed to log in with Google.');

@@ -23,6 +23,7 @@ import ProfilePage from './Profile';
 import VendorOrCustomer from './VendorOrCustomer';
 import VendorRegistrationPage from './VendorRegistrationPage';
 import Dashboard from './Dashboard';
+import GoogleAuthPage from './GoogleVendorOrCustomer';
 
 function App() {
   const [cityQuery, setCityQuery] = useState('');
@@ -83,6 +84,7 @@ function App() {
             <Route path="/selectRole" element={<VendorOrCustomer />} />
             <Route path='/vendorRegistration' element={<VendorRegistrationPage />} />
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/googleAuth' element={<GoogleAuthPage />} />
             <Route
               path="/"
               element={
