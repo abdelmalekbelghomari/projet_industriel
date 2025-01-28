@@ -1,5 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import SideNavbar from "./components/SideNavbar";
+import { doc, setDoc, getDoc} from 'firebase/firestore';
+import {db, auth} from './firebaseConfig';
+import Cookies from "js-cookie";
 import Card from "./components/Card";
 import ProductCard from "./components/ProductCard";
 import product_icon from "./assets/icons/cook.svg";
@@ -11,8 +14,49 @@ import fromage from "./assets/images/plateau_fromage.png";
 import saumon from "./assets/images/filet-de-saumon.jpg";
 import tournedos from "./assets/images/tournedos.jpg"
 import hlib from "./assets/images/lait.png"
+import { useNavigate } from "react-router-dom";
+
 
 export default function Dashboard() {
+
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!Cookies.get("auth_token")) {
+            navigate("/profile");
+        }
+    }, [navigate]);
+    
+
+    
+    const [userName, setUserName] = useState(""); // État pour stocker le nom d'utilisateur
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const currentUser = auth.currentUser;
+
+            if (currentUser) {
+                try {
+                    // Récupération des données de l'utilisateur dans Firestore
+                    const userRef = doc(db, "users", currentUser.uid);
+                    const userDoc = await getDoc(userRef);
+
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        setUserName(userData.displayName || "cher utilisateur");
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des données utilisateur :", error.message);
+                }
+            } else {
+                console.error("Aucun utilisateur connecté.");
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
+
     return (
         <div className="flex flex-col md:flex-row">
             <SideNavbar />
@@ -21,7 +65,7 @@ export default function Dashboard() {
                 <div className="flex flex-col gap-y-4 md:gap-y-6">
                     <div>
                         <h1 className="inline-block text-xl md:text-2xl font-bold">Bienvenue</h1>
-                        <h1 className="inline-block text-xl md:text-2xl text-customRed font-bold pl-2">John Doe</h1>
+                        <h1 className="inline-block text-xl md:text-2xl text-customRed font-bold pl-2">{userName}</h1>
                         <p className="text-customBlue text-sm md:text-base">Vous pouvez gérer votre profil et suivre vos commandes depuis cette page</p>
                     </div>
 
