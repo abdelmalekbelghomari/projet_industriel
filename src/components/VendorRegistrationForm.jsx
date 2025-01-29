@@ -23,8 +23,9 @@ const registerUser = async (email, password, firstName, lastName, phone, setMess
             email: { email },
             displayName: `${firstName} ${lastName}`,
             phoneNumber: { phone },
-            photoURL: user.photoURL || null, // Default to null if no photoURL
+            photoURL: user.photoURL || null,
             uid: user.uid,
+            isAdmin: false,
         },
         { merge: true }
       );

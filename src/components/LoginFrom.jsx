@@ -72,6 +72,7 @@ export default function LoginForm({ link }) {
           displayName: user.displayName,
           photoURL: user.photoURL,
           uid: user.uid,
+          isAdmin: false,
         }, { merge: true });
 
         Cookies.set("auth_token", token, { expires: 0.0208 });

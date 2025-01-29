@@ -32,7 +32,8 @@ export default function Dashboard() {
     
 
     
-    const [userName, setUserName] = useState(""); // État pour stocker le nom d'utilisateur
+    const [userName, setUserName] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false); 
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -40,7 +41,6 @@ export default function Dashboard() {
 
             if (currentUser) {
                 try {
-                    // Récupération des données de l'utilisateur dans Firestore
                     const userRef = doc(db, "users", currentUser.uid);
                     const userDoc = await getDoc(userRef);
 
@@ -59,11 +59,68 @@ export default function Dashboard() {
         fetchUserData();
     }, []);
 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const currentUser = auth.currentUser;
 
-    return (
-        <div className="flex flex-col md:flex-row">
-            <SideNavbar />
-            <div className=""></div>
+            if (currentUser) {
+                try {
+                    const userRef = doc(db, "users", currentUser.uid);
+                    const userDoc = await getDoc(userRef);
+
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        setIsAdmin(userData.isAdmin);
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des données utilisateur :", error.message);
+                }
+            } else {
+                console.error("Aucun utilisateur connecté.");
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
+    if(isAdmin) {
+        return (
+            <div className="flex flex-col md:flex-row">
+                <SideNavbar />
+                <div className=""></div>
+                <div className="flex-1 p-4 md:p-6">
+                    <div className="flex flex-col gap-y-4 md:gap-y-6">
+                        <div>
+                            <h1 className="inline-block text-xl md:text-2xl font-bold">Bienvenue</h1>
+                            <h1 className="inline-block text-xl md:text-2xl text-customRed font-bold pl-2">{userName}</h1>
+                            <p className="text-customBlue text-sm md:text-base">Vous pouvez gérer votre profil et suivre vos commandes depuis cette page</p>
+                        </div>
+    
+                        {/* Cards in grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            <Card title={"Produits"} text1={"Gérez vos produits disponibles à la vente"} text2={"Voir les produits"} icon={product_icon} link={"/dashboard"}/>
+                            <Card title={"Commandes"} text1={"Suivez les commandes passées par les clients"} text2={"Voir les commandes"} icon={delivery_icon} link={"/dashboard"}/>
+                            <Card title={"Profil"} text1={"Mettez à jour vos informations de profil"} text2={"Voir le profil"} icon={profile_icon} link={"/dashboard"}/>
+                        </div>
+    
+                        {/* Titre des produits */}
+                        <div className="text-xl font-bold">Vos Produits</div>
+    
+                        {/* ProductCards in grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                            <ProductCard title={"Pain Naan"} text1={"Pain artisanal originaire d'Asie du Sud"} text2={"Modifier"} price={"3€55"} image={pain_naan} link={"/dashboard"}/>
+                            <ProductCard title={"Légumes de saison"} text1={"Panier de légumes de saisons de la région"} text2={"Modifier"} price={"5€38"} image={legumes} link={"/dashboard"}/>
+                            <ProductCard title={"Plateau de fromages"} text1={"Plateau de fromages de terroirs"} text2={"Modifier"} price={"9€20"} image={fromage} link={"/dashboard"}/>
+                            <ProductCard title={"Filets de Saumon"} text1={"3 filets de saumon sauvage péché en Atlantique Nord"} text2={"Modifier"} price={"9€00"} image={saumon} link={"/dashboard"}/>
+                            <ProductCard title={"Tournedos d'agneau"} text1={"2 tournedos d'agneau préparés par votre boucher"} text2={"Modifier"} price={"7€50"} image={tournedos} link={"/dashboard"}/>
+                            <ProductCard title={"Bouteilles de lait"} text1={"Lait de vache demi-écrémé"} text2={"Modifier"} price={"1€30"} image={hlib} link={"/dashboard"}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
+        return (
             <div className="flex-1 p-4 md:p-6">
                 <div className="flex flex-col gap-y-4 md:gap-y-6">
                     <div>
@@ -93,6 +150,6 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
