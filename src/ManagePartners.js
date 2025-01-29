@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { collection, getDocs, doc, setDoc, deleteDoc, addDoc } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc, getDoc, deleteDoc, addDoc } from "firebase/firestore";
 import { db, auth } from "./firebaseConfig";
 import "./ManagePartners.css";
 
@@ -54,19 +54,29 @@ function ManagePartners() {
   // Validate a partner
   const handleValidatePartner = async (partner) => {
     try {
-      const { id, ...partnerData } = partner;
-
-      // Add to ValidatedPartners
-      await setDoc(doc(db, "users", currentUser.uid), partnerData, { merge: true });
-
-      // Remove from pendingPartners
-      const partnerDoc = doc(db, "pendingPartners", id);
-      await deleteDoc(partnerDoc);
-
-      // Update local states
+      const { id, marketName, description, adress, ...partnerData } = partner;
+      const userRef = doc(db, "users", currentUser.uid);
+  
+      // 🔍 1. Récupérer les anciennes données de l'utilisateur
+      const userSnap = await getDoc(userRef);
+      let existingData = userSnap.exists() ? userSnap.data() : {};
+  
+      // 🚀 2. Ajouter uniquement les champs du marché sans toucher aux autres
+      await setDoc(userRef, {
+        ...existingData, // 🛑 Garde `displayName` et les autres données
+        marketName: marketName || existingData.marketName || "", // Si déjà existant, on garde
+        marketDescription: description || existingData.marketDescription || "",
+        marketAdress: adress || existingData.marketAdress || ""
+      });
+  
+      // 🗑️ 3. Supprimer l'entrée dans `pendingPartners`
+      await deleteDoc(doc(db, "pendingPartners", id));
+  
+      // 🔄 4. Mettre à jour l'état local
       setPendingPartners((prev) => prev.filter((p) => p.id !== id));
-      setValidatedPartners((prev) => [...prev, { ...partnerData, id: currentUser.uid }]);
-      console.log("Partner validated and moved to ValidatedPartners.");
+      setValidatedPartners((prev) => [...prev, { ...existingData, marketName, marketDescription: description, marketAdress: adress, id: currentUser.uid }]);
+  
+      console.log("Partner validated and moved to users.");
     } catch (error) {
       console.error("Error validating partner:", error);
     }
