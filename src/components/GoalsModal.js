@@ -24,6 +24,7 @@ const GoalsModal = ({ onClose, onNext, onSave }) => {
   };
 
   const handleNext = () => {
+    console.log("Selected goals before saving:", selectedGoals);
     onSave({ goals: selectedGoals }); // Transmet les objectifs sélectionnés au parent
     onNext(); // Passe au modal suivant
   };

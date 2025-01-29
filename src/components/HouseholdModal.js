@@ -3,18 +3,24 @@ import ProfileModal from './ProfileModal';
 import { ReactComponent as Sticker } from '../assets/icons/stickman.svg'; // Import SVG as React Component
 import './HouseholdModal.css';
 
-const HouseholdModal = ({ onClose, onNext, onSave}) => {
+const HouseholdModal = ({ onClose, onNext, onSave }) => {
   const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
+  const [children, setChildren] = useState(null); // Default: No selection
 
   const handleAdultClick = (count) => setAdults(count);
-  const handleChildrenClick = (count) => setChildren(count);
 
-  const handleNext = () => {
-    onSave({ adults, children }); // Envoie les données au parent
-    onNext(); // Passe au modal suivant
+  const handleChildrenClick = (count) => {
+    if (children === null && count > 0) {
+      setChildren(1); // First click sets it to 1, highlights only 1
+    } else {
+      setChildren(count); // Normal behavior for the rest
+    }
   };
 
+  const handleNext = () => {
+    onSave({ adults, children: children ?? 0 }); // Ensure 0 is saved properly
+    onNext();
+  };
 
   return (
     <ProfileModal
@@ -34,9 +40,7 @@ const HouseholdModal = ({ onClose, onNext, onSave}) => {
                 onClick={() => handleAdultClick(count)}
                 className={adults >= count ? 'selected' : ''}
               >
-                <Sticker
-                  className={`sticker ${adults >= count ? 'selected' : ''}`}
-                />
+                <Sticker className={`sticker ${adults >= count ? 'selected' : ''}`} />
               </button>
             ))}
           </div>
@@ -48,11 +52,9 @@ const HouseholdModal = ({ onClose, onNext, onSave}) => {
               <button
                 key={`child-${count}`}
                 onClick={() => handleChildrenClick(count)}
-                className={children >= count ? 'selected' : ''}
+                className={children !== null && children >= count ? 'selected' : ''} // Fix: No default selection, but works normally after first click
               >
-                <Sticker
-                  className={`sticker ${children >= count ? 'selected' : ''}`}
-                />
+                <Sticker className={`sticker ${children !== null && children >= count ? 'selected' : ''}`} />
               </button>
             ))}
           </div>

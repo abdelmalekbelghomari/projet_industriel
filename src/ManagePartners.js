@@ -15,8 +15,6 @@ function ManagePartners() {
         id: doc.id,
         ...doc.data(),
       }));
-
-      console.log("Pending partners:", partners);
       setPendingPartners(partners);
     } catch (error) {
       console.error("Error fetching pending partners:", error);
@@ -31,8 +29,6 @@ function ManagePartners() {
         id: doc.id,
         ...doc.data(),
       }));
-
-      console.log("Validated partners:", partners);
       setValidatedPartners(partners);
     } catch (error) {
       console.error("Error fetching validated partners:", error);
@@ -43,19 +39,11 @@ function ManagePartners() {
   const handleValidatePartner = async (partner) => {
     try {
       const { id, ...partnerData } = partner;
-
-      // Add to ValidatedPartners
       await addDoc(collection(db, "ValidatedPartners"), partnerData);
+      await deleteDoc(doc(db, "pendingPartners", id));
 
-      // Remove from pendingPartners
-      const partnerDoc = doc(db, "pendingPartners", id);
-      await deleteDoc(partnerDoc);
-
-      // Update local states
       setPendingPartners((prev) => prev.filter((p) => p.id !== id));
       setValidatedPartners((prev) => [...prev, { ...partnerData }]);
-
-      console.log("Partner validated and moved to ValidatedPartners.");
     } catch (error) {
       console.error("Error validating partner:", error);
     }
@@ -64,13 +52,8 @@ function ManagePartners() {
   // Remove a partner from pendingPartners
   const handleRemovePartner = async (partnerId) => {
     try {
-      const partnerDoc = doc(db, "pendingPartners", partnerId);
-      await deleteDoc(partnerDoc);
-
-      // Update local state
+      await deleteDoc(doc(db, "pendingPartners", partnerId));
       setPendingPartners((prev) => prev.filter((partner) => partner.id !== partnerId));
-
-      console.log("Partner removed from pendingPartners.");
     } catch (error) {
       console.error("Error removing partner:", error);
     }
@@ -85,46 +68,53 @@ function ManagePartners() {
     <div className="manage-partners">
       <h2>Manage Partners</h2>
 
-      <div className="pending-partners-section">
-        <h3>Pending Partners</h3>
-        <div className="partners-list">
-          {pendingPartners.length === 0 ? (
-            <p>No pending partners.</p>
-          ) : (
-            pendingPartners.map((partner) => (
-              <div key={partner.id} className="partner-container">
-                <p><strong>Market Name:</strong> {partner.marketName}</p>
-                <p><strong>Address:</strong> {partner.adress}</p>
-                <p><strong>Email:</strong> {partner.email}</p>
-                <p><strong>Phone:</strong> {partner.phone}</p>
-                <p><strong>Description:</strong> {partner.description}</p>
-                <div className="buttons">
-                  <button onClick={() => handleValidatePartner(partner)} className="approve-btn">Yes</button>
-                  <button onClick={() => handleRemovePartner(partner.id)} className="remove-btn">No</button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
+      {/* White canvas background for sections */}
+      <div className="partners-wrapper">
 
-      <div className="validated-partners-section">
-        <h3>Validated Partners</h3>
-        <div className="partners-list">
-          {validatedPartners.length === 0 ? (
-            <p>No validated partners.</p>
-          ) : (
-            validatedPartners.map((partner) => (
-              <div key={partner.id} className="partner-container">
-                <p><strong>Market Name:</strong> {partner.marketName}</p>
-                <p><strong>Address:</strong> {partner.adress}</p>
-                <p><strong>Email:</strong> {partner.email}</p>
-                <p><strong>Phone:</strong> {partner.phone}</p>
-                <p><strong>Description:</strong> {partner.description}</p>
-              </div>
-            ))
-          )}
+        {/* Pending Partners Section */}
+        <div className="pending-partners-box">
+          <h3>Pending Partners</h3>
+          <div className="partners-list">
+            {pendingPartners.length === 0 ? (
+              <p className="empty-message">No current pending partners.</p>
+            ) : (
+              pendingPartners.map((partner) => (
+                <div key={partner.id} className="partner-container">
+                  <p><strong>Market Name:</strong> {partner.marketName}</p>
+                  <p><strong>Address:</strong> {partner.adress}</p>
+                  <p><strong>Email:</strong> {partner.email}</p>
+                  <p><strong>Phone:</strong> {partner.phone}</p>
+                  <p><strong>Description:</strong> {partner.description}</p>
+                  <div className="buttons">
+                    <button onClick={() => handleValidatePartner(partner)} className="approve-btn">Yes</button>
+                    <button onClick={() => handleRemovePartner(partner.id)} className="remove-btn">No</button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
+
+        {/* Validated Partners Section */}
+        <div className="validated-partners-box">
+          <h3>Validated Partners</h3>
+          <div className="partners-list">
+            {validatedPartners.length === 0 ? (
+              <p className="empty-message">No validated partners.</p>
+            ) : (
+              validatedPartners.map((partner) => (
+                <div key={partner.id} className="partner-container">
+                  <p><strong>Market Name:</strong> {partner.marketName}</p>
+                  <p><strong>Address:</strong> {partner.adress}</p>
+                  <p><strong>Email:</strong> {partner.email}</p>
+                  <p><strong>Phone:</strong> {partner.phone}</p>
+                  <p><strong>Description:</strong> {partner.description}</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
       </div>
     </div>
   );
