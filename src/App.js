@@ -24,6 +24,7 @@ import VendorOrCustomer from './VendorOrCustomer';
 import VendorRegistrationPage from './VendorRegistrationPage';
 import Dashboard from './Dashboard';
 import GoogleAuthPage from './GoogleVendorOrCustomer';
+import Menus from './Menus';
 
 function App() {
   const [cityQuery, setCityQuery] = useState('');
@@ -40,32 +41,8 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    const fetchMenus = async () => {
-      try {
-        const menusCollection = collection(db, 'menus');
-        const menusSnapshot = await getDocs(menusCollection);
-        const menusList = menusSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          menuName: doc.data().menuName,
-          meals: doc.data().meals || [],
-        }));
-        console.log('Fetched menus:', menusList);
-        setMenus(menusList);
-      } catch (error) {
-        console.error('Error fetching menus:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMenus();
-  }, []);
-
   return (
     <Router>
-      {/* Conteneur principal */}
-      <div className="min-h-screen flex flex-col">
         {/* Navbar */}
         <Navbar />
 
@@ -89,33 +66,19 @@ function App() {
               path="/"
               element={
                 <>
-                  <div className="content-container">
-                    <div className="main-section">
-                      <h1>Découvrez si nous livrons chez vous</h1>
+                    <div className="flex flex-col ml-8 mt-8">
+                      <div className='text-4xl text-customBlue'>Découvrez si nous livrons chez vous</div>
                       <SearchBox onSearch={handleSearch} />
-                      <p>Nous livrons tous les jours les quartiers de nombreuses villes en France.</p>
-                      <div className="flex flex-wrap justify-center mt-8">
-                        {loading ? (
-                          <h1>Loading...</h1>
-                        ) : (
-                          menus.length > 0 ? (
-                            menus.map((menu) => (
-                              <MenuCard key={menu.id} menu={menu} />
-                            ))
-                          ) : (
-                            <p>No menus found.</p>
-                          )
-                        )}
-                      </div>
+                      <div className='text-2xl text-customBlue'>Nous livrons tous les jours les quartiers de nombreuses villes en France.</div>
                     </div>
-                  </div>
                   {showPartners && (
                     <div ref={partnersRef}>
                       <PartnersSection cityQuery={cityQuery} />
                     </div>
                   )}
-                  <BoxSection />
                   <HowItWorksSection />
+                  <BoxSection />
+                  <Menus />          
                   <ReviewsSection />
                 </>
               }
@@ -125,8 +88,6 @@ function App() {
 
         {/* Footer */}
         <Footer />
-      </div>
-
     </Router>
   );
 }
