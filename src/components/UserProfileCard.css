@@ -1,0 +1,93 @@
+/* Import custom font */
+@font-face {
+    font-family: 'Costa Std';
+    src: url('../assets/fonts/fonnts.com-Costa_Std.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply font to entire page */
+body {
+    font-family: 'Costa Std', sans-serif;
+    background-color: #f6f0ea; /* Background like the target design */
+}
+
+/* --- GENERAL CONTAINER STYLES --- */
+.profile-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* --- SECTION HEADERS --- */
+.profile-section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2b1a46;
+    margin-bottom: 12px;
+}
+
+/* --- PROFILE CARD --- */
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- LABELS --- */
+.profile-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2b1a46;
+    margin-bottom: 5px;
+}
+
+/* --- INPUT FIELDS --- */
+.profile-input {
+    border: 1px solid #2b1a46;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 14px;
+    color: #2b1a46;
+    transition: border 0.2s ease-in-out;
+}
+
+/* Input focus */
+.profile-input:focus {
+    border: 2px solid #2b1a46;
+    outline: none;
+}
+
+/* Disabled field (email) */
+.profile-input[disabled] {
+    background: #e0e0e0;
+    cursor: not-allowed;
+}
+
+/* --- GRID LAYOUT (FOR TWO-COLUMN SECTIONS) --- */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* --- SPECIAL INFO SECTION --- */
+.profile-special-section {
+    margin-top: 25px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}

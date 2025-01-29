@@ -10,7 +10,7 @@ import { ReactComponent as PescoVegetarianIcon } from '../assets/icons/pesco_veg
 import { ReactComponent as OtherIcon } from '../assets/icons/other.svg';
 import './DietModal.css';
 
-const DietModal = ({ onClose, onNext }) => {
+const DietModal = ({ onClose, onNext, onSave}) => {
   const [selectedDiets, setSelectedDiets] = useState([]); // Tableau pour stocker les régimes sélectionnés
 
   // Fonction pour ajouter/retirer un régime sélectionné
@@ -25,13 +25,18 @@ const DietModal = ({ onClose, onNext }) => {
   // Vérifier si un régime est sélectionné
   const isSelected = (diet) => selectedDiets.includes(diet);
 
+  const handleNext = () => {
+    onSave({ diets: selectedDiets }); // Transmet les régimes sélectionnés au parent
+    onNext(); // Passe au modal suivant
+  };
+
   return (
     <ProfileModal
       progress={25}
       title="Votre régime"
       subtitle="Avez-vous un régime particulier ?"
       onClose={onClose}
-      onNext={onNext}
+      onNext={handleNext}
     >
       <div className="diet-icons">
         <button

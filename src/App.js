@@ -24,6 +24,7 @@ import VendorOrCustomer from './VendorOrCustomer';
 import VendorRegistrationPage from './VendorRegistrationPage';
 import Dashboard from './Dashboard';
 import GoogleAuthPage from './GoogleVendorOrCustomer';
+import UserProfile from './components/UserProfileCard';
 import Menus from './Menus';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [showPartners, setShowPartners] = useState(false);
   const partnersRef = useRef(null);
+
 
   const handleSearch = (searchQuery) => {
     setCityQuery(searchQuery);
@@ -62,6 +64,7 @@ function App() {
             <Route path='/vendorRegistration' element={<VendorRegistrationPage />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/googleAuth' element={<GoogleAuthPage />} />
+            <Route path="/userProfile" element={<UserProfile />} />
             <Route
               path="/"
               element={

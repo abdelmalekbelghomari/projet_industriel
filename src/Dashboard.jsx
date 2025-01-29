@@ -79,9 +79,9 @@ export default function Dashboard() {
 
                     {/* Cards en grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                        <Card title={"Produits"} text1={"Gérez vos produits disponibles à la vente"} text2={"Voir les produits"} icon={product_icon} link={"/dashboard"} />
-                        <Card title={"Commandes"} text1={"Suivez les commandes passées par les clients"} text2={"Voir les commandes"} icon={delivery_icon} link={"/dashboard"} />
-                        <Card title={"Profil"} text1={"Mettez à jour vos informations de profil"} text2={"Voir le profil"} icon={profile_icon} link={"/dashboard"} />
+                        <Card title={"Produits"} text1={"Gérez vos produits disponibles à la vente"} text2={"Voir les produits"} icon={product_icon} link={"/dashboard"}/>
+                        <Card title={"Commandes"} text1={"Suivez les commandes passées par les clients"} text2={"Voir les commandes"} icon={delivery_icon} link={"/dashboard"}/>
+                        <Card title={"Profil"} text1={"Mettez à jour vos informations de profil"} text2={"Voir le profil"} icon={profile_icon} link={"/userProfile"}/>
                     </div>
 
                     {/* Titre des produits */}

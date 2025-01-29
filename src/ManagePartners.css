@@ -1,62 +1,138 @@
+/* Style for overall container */
 .manage-partners {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-      }
-      
-      h2 {
-        text-align: center;
-        color: #333;
-      }
-      
-      .partners-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .partner-container {
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      
-      .partner-container p {
-        margin: 5px 0;
-      }
-      
-      .buttons {
-        margin-top: 10px;
-        display: flex;
-        gap: 10px;
-      }
-      
-      .approve-btn {
-        background-color: #28a745;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      
-      .approve-btn:hover {
-        background-color: #218838;
-      }
-      
-      .remove-btn {
-        background-color: #dc3545;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      
-      .remove-btn:hover {
-        background-color: #c82333;
-      }
-      
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Costa Std', sans-serif;
+}
+
+/* White canvas background for both sections */
+.partners-wrapper {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Section titles */
+h2 {
+  text-align: center;
+  color: #2b1a46;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #2b1a46;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Center the pending and validated sections */
+.pending-partners-box, .validated-partners-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Empty message */
+.empty-message {
+  color: #888;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* List of partners */
+.partners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Partner container */
+.partner-container {
+  background-color: #ffffff;
+  border: 2px solid #2b1a46;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.partner-container:hover {
+  transform: scale(1.02);
+}
+
+/* Partner text */
+.partner-container p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #2b1a46;
+}
+
+.partner-container p strong {
+  font-weight: bold;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.approve-btn, .remove-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+}
+
+.remove-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.remove-btn:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .partner-container {
+      padding: 15px;
+  }
+
+  .buttons {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .approve-btn, .remove-btn {
+      width: 100%;
+  }
+}

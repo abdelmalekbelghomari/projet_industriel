@@ -8,7 +8,7 @@ import { ReactComponent as MixerIcon } from '../assets/icons/mixer.svg';
 import { ReactComponent as AirFryerIcon } from '../assets/icons/air_fryer.svg';
 import './KitchenModal.css';
 
-const KitchenModal = ({ onClose, onNext }) => {
+const KitchenModal = ({ onClose, onNext, onSave }) => {
   const [selectedEquipment, setSelectedEquipment] = useState([]);
 
   const handleEquipmentClick = (equipment) => {
@@ -19,13 +19,18 @@ const KitchenModal = ({ onClose, onNext }) => {
     );
   };
 
+  const handleNext = () => {
+    onSave({ kitchenEquipment: selectedEquipment }); // Transmet les équipements sélectionnés au parent
+    onNext(); // Passe au modal suivant
+  };
+
   return (
     <ProfileModal
       progress={75}
       title="Votre cuisine"
       subtitle="Quels sont vos équipements de cuisine ?"
       onClose={onClose}
-      onNext={onNext}
+      onNext={handleNext}
     >
       <div className="kitchen-icons">
         <button

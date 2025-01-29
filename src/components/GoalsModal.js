@@ -6,7 +6,7 @@ import { ReactComponent as CookIcon } from '../assets/icons/cook.svg';
 import { ReactComponent as MoneyIcon } from '../assets/icons/money.svg';
 import './GoalsModal.css';
 
-const GoalsModal = ({ onClose, onNext }) => {
+const GoalsModal = ({ onClose, onNext, onSave }) => {
   const [selectedGoals, setSelectedGoals] = useState([]);
 
   const handleGoalClick = (goal) => {
@@ -23,13 +23,19 @@ const GoalsModal = ({ onClose, onNext }) => {
     }
   };
 
+  const handleNext = () => {
+    console.log("Selected goals before saving:", selectedGoals);
+    onSave({ goals: selectedGoals }); // Transmet les objectifs sélectionnés au parent
+    onNext(); // Passe au modal suivant
+  };
+
   return (
     <ProfileModal
       progress={90}
       title="Votre objectifs"
       subtitle="Jow vous accompagne sur tous ces challenges du quotidien"
       onClose={onClose}
-      onNext={onNext}
+      onNext={handleNext}
     >
       <div className="goals-list">
         <button
