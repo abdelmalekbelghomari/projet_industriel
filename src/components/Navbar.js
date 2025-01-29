@@ -9,6 +9,9 @@ import CartIcon from '../assets/icons/cart.svg';
 import UserIcon from '../assets/icons/user.svg';
 import logo from '../assets/icons/logo.svg';
 
+/* Import UserMenu */
+import UserMenu from './UserMenu';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -46,11 +49,6 @@ const Navbar = () => {
         ☰
       </div>
       <ul className="nav-menu">
-        {/* <li className="nav-item">
-          <Link to="/products" className="nav-links">
-            Nos Produits
-          </Link>
-        </li> */}
         <li className="nav-item">
           <Link to="/subscriptions" className="nav-links">
             Nos Abonnements
@@ -80,9 +78,6 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div className="mobile-menu" ref={menuRef}>
-          {/* <Link to="/products" onClick={closeMenu}>
-            Nos Produits
-          </Link> */}
           <Link to="/subscriptions" onClick={closeMenu}>
             Nos Abonnements
           </Link>
@@ -98,14 +93,13 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Add SVG icons */}
+      {/* Ajout des icônes avec UserMenu */}
       <div className="navbar-icons">
         <img src={FranceFlag} alt="French flag" className="icon" />
-        <img src={LocationIcon} alt="Location icon" className="icon" />
+        {/* <img src={LocationIcon} alt="Location icon" className="icon" /> */}
         <img src={CartIcon} alt="Cart icon" className="icon" />
-        <Link to="/profile" className='nav-links'>
-          <img src={UserIcon} alt="User icon" className="icon" />
-        </Link>
+        <UserMenu/>
+        <div className="h-3"></div>
       </div>
     </nav>
   );

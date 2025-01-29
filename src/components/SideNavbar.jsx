@@ -11,7 +11,7 @@ export default function SideNavbar() {
     };
 
     return (
-        <div className="mb-auto w-64 bg-customBlue text-white left-0 pb-3 rounded-tr-lg rounded-br-lg">
+        <div className="mb-auto w-64 bg-customBlue text-white left-0 pb-3 rounded-br-3xl">
             <ul className="flex flex-col mt-4 space-y-2">
                 <li>
                     <Link

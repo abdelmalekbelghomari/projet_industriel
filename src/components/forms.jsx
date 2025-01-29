@@ -139,7 +139,7 @@ export default function Form({title, description, phone, email, address}) {
                             className={`px-4 py-2 rounded-lg text-sm tracking-wider font-medium outline-none border-2 mr-4 ${
                                 activeButton === 'abonnements'
                                     ? 'bg-customRed text-white'
-                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:border-customRed'
+                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:text-white hover:border-customRed'
                             }`}
                             onClick={() => handleClick('abonnements')}
                         >
@@ -150,7 +150,7 @@ export default function Form({title, description, phone, email, address}) {
                             className={`px-4 py-2 rounded-lg text-sm tracking-wider font-medium outline-none border-2 mr-4 ${
                                 activeButton === 'commercants'
                                     ? 'bg-customRed text-white'
-                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:border-customRed'
+                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:text-white hover:border-customRed'
                             }`}
                             onClick={() => handleClick('commercants')}
                         >
@@ -161,7 +161,7 @@ export default function Form({title, description, phone, email, address}) {
                             className={`px-4 py-2 rounded-lg text-sm tracking-wider font-medium outline-none border-2 ${
                                 activeButton === 'autre'
                                     ? 'bg-customRed text-white'
-                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:border-customRed'
+                                    : 'text-customBlue border-gray-300 hover:bg-customRed hover:text-white hover:border-customRed'
                             }`}
                             onClick={() => handleClick('autre')}
                         >

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { db,auth } from "../firebaseConfig";
 import Cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
 
 const registerUser = async (email, password, firstName, lastName, phone, setMessage, setShowModal) => {
 
@@ -12,10 +13,22 @@ const registerUser = async (email, password, firstName, lastName, phone, setMess
 
     if (userCredential.user) {
       await sendEmailVerification(userCredential.user);
-
-      const token = await userCredential.user.getIdToken();
+      const user = userCredential.user;
+      const token = await user.getIdToken();
       Cookies.set("auth_token", token, { expires: 0.0208 }); 
 
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef,
+        {
+            email: { email },
+            displayName: `${firstName} ${lastName}`,
+            phoneNumber: { phone },
+            photoURL: user.photoURL || null,
+            uid: user.uid,
+            isAdmin: false,
+        },
+        { merge: true }
+      );
       setMessage(`Merci ${firstName} ! Un email de confirmation a été envoyé. Veuillez vérifier votre boîte mail.`);
       setShowModal(true);
       
