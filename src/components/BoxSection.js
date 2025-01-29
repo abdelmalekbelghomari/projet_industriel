@@ -16,8 +16,8 @@ const BoxSection = () => {
       <div className="box-cards">
         <BoxCard image={quickMealImage} label="Repas rapide" />
         <BoxCard image={classicMealImage} label="Classic" />
-        <BoxCard image={vegetarianMealImage} label="Végétarien" />
         <BoxCard image={lowCalorieMealImage} label="Faible calorie" />
+        <BoxCard image={vegetarianMealImage} label="Végétarien" />
       </div>
     </div>
   );

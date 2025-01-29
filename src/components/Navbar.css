@@ -14,7 +14,7 @@
 /* Navbar Styles */
 .navbar {
     /* position: fixed; */
-    top: 0;
+    /* top: 0; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -22,7 +22,10 @@
     padding: 40px 20px;
     z-index: 10;
     font-family: 'Costa Std', sans-serif;
-    background: #FFFFFF;
+    background: #D63A32;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
     /* background: linear-gradient(to right, #f5ebe3 65%, #d62d2a 35%); */
 }
 
@@ -52,7 +55,7 @@
   }
   
   .nav-links {
-    color: #2e205f;
+    color: #FFFFFF;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 400;
@@ -62,7 +65,7 @@
   
   /* Effet de survol */
   .nav-links:hover {
-    color: #ff4c4c;
+    color: #1E1E4C;
     transition: color 0.3s ease-in-out;
   }
   
@@ -74,9 +77,9 @@
   }
   
   .navbar-icons .icon {
-    margin-left: 15px;
-    width: 24px;
-    height: 24px;
+    margin-right: 15px;
+    width: 2rem ;
+    height: 2rem;
   }
   
   .navbar-icons i {
@@ -93,15 +96,15 @@
 
   /* Navbar logo styling */
 .navbar-logo a {
-    color: #222153;
-    font-size: 2.5rem; /* Augmente la taille de la police, tu peux ajuster selon tes préférences */
+    color: #FFFFFF;
+    font-size: 2.5rem;
     font-weight: bold;
     text-decoration: none;
   }
 
   .logo-image {
-    width: 120px; /* Adjust size as needed */
     height: auto;
+    min-width: 120px;
   }
 
   .hamburger {
