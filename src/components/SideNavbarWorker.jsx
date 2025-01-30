@@ -15,7 +15,7 @@ export default function SideNavbarWorker() {
             <ul className="flex flex-col mt-4 space-y-2">
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Tableau de bord
@@ -23,7 +23,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/gestion-utilisateurs"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Gestion des utilisateurs
@@ -31,7 +31,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/commandes"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Commandes

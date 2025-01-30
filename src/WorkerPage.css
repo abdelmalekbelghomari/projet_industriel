@@ -1,0 +1,16 @@
+.worker-container {
+        display: flex;
+        height: 100vh; /* Pleine hauteur */
+        background: #F5F3EE; /* Fond clair */
+    }
+    
+    .worker-content {
+        flex-grow: 1; /* Prend tout l’espace restant */
+        padding: 40px;
+        margin-left: 20px; /* Décale le contenu pour éviter qu'il colle à la navbar */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centre verticalement */
+        align-items: center; /* Centre horizontalement */
+    }
+    

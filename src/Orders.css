@@ -1,0 +1,34 @@
+.orders-container {
+        max-width: 90%;  /* Pour éviter que le tableau prenne toute la largeur */
+        margin: 0 auto;  /* Centrer le tableau */
+        overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+    }
+    
+    .orders-table {
+        width: 100%;
+        max-width: 100%;  /* Empêcher l'expansion */
+        border-collapse: collapse;
+    }
+    
+    .orders-table th, .orders-table td {
+        white-space: nowrap; /* Empêcher le texte de sauter à la ligne */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+    }
+    
+    .orders-table th {
+        background-color: #E0D6D0; /* Gris clair pour l'en-tête */
+        text-align: left;
+    }
+    
+    .orders-card {
+        width: 100%;
+        max-width: 800px; /* Limite la taille max des cartes */
+        margin: auto; /* Centre les cartes */
+        padding: 15px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    

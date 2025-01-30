@@ -23,7 +23,7 @@ export default function SideNavbarClient() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/work/gestion-utilisateurs"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Gestion des utilisateurs

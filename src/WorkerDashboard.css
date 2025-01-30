@@ -1,0 +1,90 @@
+
+    .dashboard-container {
+        font-family: 'Costa Std', sans-serif;
+        padding: 20px;
+        background: #F5F3EE; /* Couleur de fond */
+        min-height: 100vh;
+    }
+    
+    .dashboard-title {
+        font-size: 2rem;
+        text-align: center;
+        color: #D62D2A; /* Couleur du texte */
+        margin-bottom: 20px;
+    }
+    
+    .stats-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 200px;
+        font-size: 1.2rem;
+    }
+    
+    .stat-card h2 {
+        color: #007BFF;
+        font-size: 2.5rem;
+    }
+    
+    .stat-card.orders h2 {
+        color: #D9534F;
+    }
+    
+    .stat-card.payments h2 {
+        color: #28A745;
+    }
+    
+    .quick-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .link-card {
+        display: block;
+        text-align: center;
+        padding: 15px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+        transition: 0.3s;
+    }
+    
+    .link-card:hover {
+        background: #E0E0E0;
+    }
+    
+    .notifications {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .notifications h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .notifications ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .notifications li {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
