@@ -69,7 +69,9 @@ export default function LoginForm({ link }) {
         if (userData.isAdmin) {
           console.log("Admin detected. Redirecting to Worker Page...");
           navigate('/WorkerPage'); // Admins go to WorkerPage
-      } else {
+      }else if (userData.marketName){
+        navigate('/VendorPage');
+      }else {
           console.log("Regular user. Redirecting to dashboard...");
           navigate('/dashboard'); // Normal users go to dashboard
       }

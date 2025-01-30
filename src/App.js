@@ -21,12 +21,12 @@ import ManagePartners from './ManagePartners';
 import UserSubscriptionPage from './UserSubscription';
 import ProfilePage from './Profile';
 import VendorOrCustomer from './VendorOrCustomer';
-import VendorRegistrationPage from './VendorRegistrationPage';
 import Dashboard from './Dashboard';
 import GoogleAuthPage from './GoogleVendorOrCustomer';
 import UserProfile from './components/UserProfileCard';
 import Menus from './Menus';
 import WorkerPage from './WorkerPage';
+import VendorPage from './VendorPage';
 
 function App() {
   const [cityQuery, setCityQuery] = useState('');
@@ -53,6 +53,7 @@ function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/worker/*" element={<WorkerPage />} />
+            <Route path="/vendor/*" element={<VendorPage />} />
             <Route path="/products" element={<Products />} />
             <Route path="/subscriptions" element={<Subscriptions />} />
             <Route path="/about" element={<AboutPage />} />
@@ -63,11 +64,11 @@ function App() {
             <Route path="/userRegistration" element={<UserSubscriptionPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/selectRole" element={<VendorOrCustomer />} />
-            <Route path='/vendorRegistration' element={<VendorRegistrationPage />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/googleAuth' element={<GoogleAuthPage />} />
             <Route path="/userProfile" element={<UserProfile />} />
             <Route path="/workerPage" element={<WorkerPage/>} />
+            <Route path="/vendorPage" element={<VendorPage/>} />
             <Route
               path="/"
               element={

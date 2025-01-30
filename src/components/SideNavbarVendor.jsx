@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-export default function SideNavbar() {
+export default function SideNavbarVendor() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -15,74 +15,26 @@ export default function SideNavbar() {
             <ul className="flex flex-col mt-4 space-y-2">
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/vendor/registration"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
-                        Tableau de bord
+                        Inscription
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/vendor/products"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
-                        Gestion des utilisateurs
+                        Gestion des produits
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/vendor/my-products"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
-                        Commandes
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Statistiques
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/partenaires"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Commerçants
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Paiements
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Supports client
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Stock
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/dashboard"
-                        className="block py-3 px-6 hover:text-customRed rounded-md"
-                    >
-                        Configurations du site
+                        Mes Produits
                     </Link>
                 </li>
                 <li>

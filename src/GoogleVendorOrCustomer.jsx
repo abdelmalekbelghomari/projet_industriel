@@ -13,7 +13,7 @@ export default function GoogleVendorOrCustomer(){
               Client
             </button>
             </Link>
-            <Link to="/vendre">
+            <Link to="/vendor">
                 <button className="bg-customBlue hover:bg-customRed text-white px-6 py-3 rounded-lg">
                 Vendeur
                 </button>
