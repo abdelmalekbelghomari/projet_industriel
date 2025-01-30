@@ -65,7 +65,14 @@ export default function LoginForm({ link }) {
       if (userDoc.exists()) {
         Cookies.set("auth_token", token, { expires: 0.0208 });
         console.log("User Info:", user);
-        navigate('/dashboard');
+        const userData = userDoc.data();
+        if (userData.isAdmin) {
+          console.log("Admin detected. Redirecting to Worker Page...");
+          navigate('/WorkerPage'); // Admins go to WorkerPage
+      } else {
+          console.log("Regular user. Redirecting to dashboard...");
+          navigate('/dashboard'); // Normal users go to dashboard
+      }
       } else {
         await setDoc(userRef, {
           email: user.email,

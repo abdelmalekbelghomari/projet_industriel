@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../firebaseConfig';
-import SideNavbar from './SideNavbar';
+import SideNavbar from './SideNavbarClient';
 import "./UserProfileCard.css";
 
 const UserProfile = () => {

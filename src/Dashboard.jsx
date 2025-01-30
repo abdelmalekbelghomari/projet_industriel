@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from './firebaseConfig';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import SideNavbar from "./components/SideNavbar";
+import SideNavbar from "./components/SideNavbarClient";
 import Card from "./components/Card";
 import ProductCard from "./components/ProductCard";
 import product_icon from "./assets/icons/cook.svg";

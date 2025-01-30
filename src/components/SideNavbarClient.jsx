@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-export default function SideNavbar() {
+export default function SideNavbarClient() {
     const navigate = useNavigate();
 
     const handleLogout = () => {

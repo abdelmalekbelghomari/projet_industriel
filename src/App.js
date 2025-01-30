@@ -26,6 +26,7 @@ import Dashboard from './Dashboard';
 import GoogleAuthPage from './GoogleVendorOrCustomer';
 import UserProfile from './components/UserProfileCard';
 import Menus from './Menus';
+import WorkerPage from './WorkerPage';
 
 function App() {
   const [cityQuery, setCityQuery] = useState('');
@@ -51,6 +52,7 @@ function App() {
         {/* Contenu principal */}
         <div className="flex-grow">
           <Routes>
+            <Route path="/worker/*" element={<WorkerPage />} />
             <Route path="/products" element={<Products />} />
             <Route path="/subscriptions" element={<Subscriptions />} />
             <Route path="/about" element={<AboutPage />} />
@@ -65,6 +67,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/googleAuth' element={<GoogleAuthPage />} />
             <Route path="/userProfile" element={<UserProfile />} />
+            <Route path="/workerPage" element={<WorkerPage/>} />
             <Route
               path="/"
               element={
