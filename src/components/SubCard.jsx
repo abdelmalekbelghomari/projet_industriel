@@ -1,5 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+import {db, auth} from "../firebaseConfig";
+import {doc, getDoc, setDoc} from "firebase/firestore";
 import "./SubCard.css";
+
+
+
+
 
 function printStars(rating) {
     const stars = [];
@@ -47,19 +53,55 @@ function printStars(rating) {
 
 function SubCard({ title, image, rating, price, large, disabled }) {
     const disabledClass = disabled ? "disabled" : "";
+    const [showModal, setShowModal] = useState(false);
+
+    const handleAddToCart = async () => {
+        if (disabled) return; // Empêcher l'ajout si désactivé
+
+        const user = auth.currentUser; // Récupérer l'utilisateur connecté
+
+        if (!user) {
+            alert("Vous devez être connecté pour ajouter au panier !");
+            return;
+        }
+
+        const cartRef = doc(db, "cart", user.uid); // Document de l'utilisateur dans `cart`
+        const cartSnap = await getDoc(cartRef);
+
+        let cartData = [];
+        if (cartSnap.exists()) {
+            cartData = cartSnap.data().items || [];
+        }
+
+        // Ajout du nouvel élément au panier
+        const newItem = { title, image, rating, price, quantity: 1 };
+        cartData.push(newItem);
+
+        // Mise à jour dans Firestore
+        await setDoc(cartRef, {
+            email: user.email,
+            displayName: user.displayName || "Utilisateur",
+            items: cartData,
+        });
+
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    }
+
     return (
         <div className={`sub-card 
             ${large ? "large" : ""}
             ${!large && disabledClass === "disabled" ? "disabled" : ""}
              max-w-sm bg-customRed border border-gray-200 rounded-lg shadow 
             ${large ? "scale-100 shadow-lg border-customRed-500" : ""}`}>
-            <a href="/">
-                <img className="p-8 rounded-t-lg" src={image} alt="product" />
-            </a>
+            <img className="p-8 rounded-t-lg" src={image} alt="product" />
             <div className="px-5 pb-5">
-                <a href="/">
+                <div>
                     <h5 className="title text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-                </a>
+                </div>
                 <div className="flex items-center mt-2.5 mb-5">
                     <div className="flex items-center space-x-1 rtl:space-x-reverse">
                         {printStars(rating)}
@@ -68,17 +110,30 @@ function SubCard({ title, image, rating, price, large, disabled }) {
                 </div>
                 <div className="flex items-center justify-between">
                     <span className="price text-3xl font-bold text-gray-900 dark:text-white">{price}/mois</span>
-                    <a
-                        href="/404"
+                    <button
                         className={`add-to-cart text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center 
                                 ${disabledClass === "disabled" ? "bg-gray-400 cursor-not-allowed" : "bg-customBlue hover:bg-customBlue-dark focus:ring-4 focus:outline-none focus:ring-customBlue-light"}`}
-                        onClick={(e) => disabledClass === "disabled" && e.preventDefault()}
+                        onClick={handleAddToCart}
                     >
                         Add to cart
-                    </a>
+                    </button>
                 </div>
             </div>
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <p className="text-lg text-center font-semibold text-customBlue">Article ajouté au panier</p>
+                    <button 
+                    onClick={closeModal} 
+                    className="mt-4 px-6 py-2 bg-customBlue hover:bg-customRed text-white font-semibold rounded-md"
+                    >
+                    Fermer
+                    </button>
+                </div>
+                </div>
+            )}
         </div>
+        
     );
 }
 
