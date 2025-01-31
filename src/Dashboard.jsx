@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, getDocs} from 'firebase/firestore';
 import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from './firebaseConfig';
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ export default function Dashboard() {
     const [userName, setUserName] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const cookie = Cookies.get('auth_token');
@@ -37,17 +38,23 @@ export default function Dashboard() {
                 try {
                     const userRef = doc(db, "users", user.uid);
                     const userDoc = await getDoc(userRef);
-
+    
                     if (userDoc.exists()) {
-                        const userData = userDoc.data();
-                        setUserName(userData.displayName || "cher utilisateur");
-                        setIsAdmin(userData.isAdmin || false);
+                        setUserName(userDoc.data().displayName || "cher utilisateur");
+                        setIsAdmin(userDoc.data().isAdmin || false);
                     }
+    
+                    // 🔥 Fetch vendor's products
+                    const productsRef = collection(db, "products");
+                    const q = query(productsRef);
+                    const querySnapshot = await getDocs(q);
+    
+                    setProducts(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    
                 } catch (error) {
-                    console.error("Erreur lors de la récupération des données utilisateur :", error.message);
+                    console.error("❌ Error fetching data:", error);
                 }
             } else {
-                console.error("Aucun utilisateur connecté.");
                 navigate('/profile');
             }
             setLoading(false);
@@ -89,12 +96,21 @@ export default function Dashboard() {
 
                     {/* ProductCards en grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                        <ProductCard title={"Pain Naan"} text1={"Pain artisanal originaire d'Asie du Sud"} text2={"Modifier"} price={"3€55"} image={pain_naan} link={"/dashboard"} />
-                        <ProductCard title={"Légumes de saison"} text1={"Panier de légumes de saisons de la région"} text2={"Modifier"} price={"5€38"} image={legumes} link={"/dashboard"} />
-                        <ProductCard title={"Plateau de fromages"} text1={"Plateau de fromages de terroirs"} text2={"Modifier"} price={"9€20"} image={fromage} link={"/dashboard"} />
-                        <ProductCard title={"Filets de Saumon"} text1={"3 filets de saumon sauvage péché en Atlantique Nord"} text2={"Modifier"} price={"9€00"} image={saumon} link={"/dashboard"} />
-                        <ProductCard title={"Tournedos d'agneau"} text1={"2 tournedos d'agneau préparés par votre boucher"} text2={"Modifier"} price={"7€50"} image={tournedos} link={"/dashboard"} />
-                        <ProductCard title={"Bouteilles de lait"} text1={"Lait de vache demi-écrémé"} text2={"Modifier"} price={"1€30"} image={hlib} link={"/dashboard"} />
+                        {products.length > 0 ? (
+                            products.map(product => (
+                                <ProductCard 
+                                    key={product.id}
+                                    title={product.name} 
+                                    text1={product.description} 
+                                    text2={"Modifier"} 
+                                    price={`${product.price}€`} 
+                                    image={product.imageURL || "https://via.placeholder.com/150"}  
+                                    link={"/dashboard"} 
+                                />
+                            ))
+                        ) : (
+                            <p className="text-gray-500">Aucun produit disponible.</p>
+                        )}
                     </div>
                 </div>
             </div>
