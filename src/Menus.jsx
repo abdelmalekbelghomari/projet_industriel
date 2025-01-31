@@ -29,16 +29,19 @@ function Menus(){
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center mt-8">
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        menus.length > 0 ? (
-          menus.map((menu) => <MenuCard key={menu.id} menu={menu} />)
+    <div className='mt-20 mb-20 bg-customRed p-10'>
+      <div className='text-white text-3xl text-center'>Nos menus en vogue</div>
+      <div className="flex flex-wrap justify-center mt-8">
+        {loading ? (
+          <h1>Loading...</h1>
         ) : (
-          <p>No menus found.</p>
-        )
-      )}
+          menus.length > 0 ? (
+            menus.map((menu) => <MenuCard key={menu.id} menu={menu} />)
+          ) : (
+            <p>No menus found.</p>
+          )
+        )}
+      </div>
     </div>
   );
 };
