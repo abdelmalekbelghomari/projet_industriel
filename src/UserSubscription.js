@@ -72,7 +72,7 @@ const UserSubscriptionPage = () => {
       }
   
       console.log("Data successfully updated in Firestore!");
-      navigate('/dashboard');
+      navigate('/');
     } catch (error) {
       console.error("Error updating Firestore:", error.message);
     }
