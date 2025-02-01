@@ -38,6 +38,14 @@ export default function SideNavbarVendor() {
                     </Link>
                 </li>
                 <li>
+                    <Link
+                        to="/vendor/orders"
+                        className="block py-3 px-6 hover:text-customRed rounded-md"
+                    >
+                        Commandes reçues
+                    </Link>
+                </li>
+                <li>
                     <button onClick={handleLogout} className="block py-3 px-6 hover:text-customRed rounded-md">
                         Deconnexion
                     </button>

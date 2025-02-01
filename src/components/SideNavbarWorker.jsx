@@ -39,7 +39,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Statistiques
@@ -55,7 +55,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Paiements
@@ -63,7 +63,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Supports client
@@ -71,7 +71,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Stock
@@ -79,7 +79,7 @@ export default function SideNavbarWorker() {
                 </li>
                 <li>
                     <Link
-                        to="/dashboard"
+                        to="/worker/"
                         className="block py-3 px-6 hover:text-customRed rounded-md"
                     >
                         Configurations du site

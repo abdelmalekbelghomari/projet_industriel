@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "./firebaseConfig";
+import ProductCard from "./components/ProductCard";
 
 const VendorProductList = () => {
     const [products, setProducts] = useState([]);
@@ -34,23 +35,27 @@ const VendorProductList = () => {
 
     return (
         <div className="product-list-container">
-            <h2 className="title">Mes Produits</h2>
-            {loading ? (
-                <p className="loading-text">Chargement des produits...</p>
-            ) : products.length === 0 ? (
-                <p className="no-products">Aucun produit trouvé.</p>
-            ) : (
-                <div className="product-grid">
-                    {products.map((product) => (
-                        <div key={product.id} className="product-card">
-                            <h3>{product.name}</h3>
-                            <p><strong>Prix :</strong> {product.price}€</p>
-                            <p><strong>Catégorie :</strong> {product.category}</p>
-                            <p><strong>Description :</strong> {product.description}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
+            {/* Titre des produits */}
+            <div className="text-xl font-bold">Vos Produits</div>
+
+            {/* ProductCards en grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {products.length > 0 ? (
+                    products.map(product => (
+                        <ProductCard 
+                            key={product.id}
+                            title={product.name} 
+                            text1={product.description} 
+                            text2={"Modifier"} 
+                            price={`${product.price}€`} 
+                            image={product.imageURL || "https://via.placeholder.com/150"}  
+                            link={"/dashboard"} 
+                        />
+                    ))
+                ) : (
+                    <p className="text-gray-500">Aucun produit disponible.</p>
+                )}
+            </div>
         </div>
     );
 };

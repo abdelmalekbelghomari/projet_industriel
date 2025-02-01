@@ -10,6 +10,8 @@ import UserIcon from '../assets/icons/user.svg';
 import logo from '../assets/icons/logo.svg';
 
 /* Import UserMenu */
+
+
 import UserMenu from './UserMenu';
 
 const Navbar = () => {
@@ -87,7 +89,9 @@ const Navbar = () => {
       <div className="navbar-icons">
         <img src={FranceFlag} alt="French flag" className="icon" />
         {/* <img src={LocationIcon} alt="Location icon" className="icon" /> */}
-        <img src={CartIcon} alt="Cart icon" className="icon" />
+        <Link to="/panier">
+          <img src={CartIcon} alt="Cart icon" className="icon cursor-pointer" />
+        </Link>
         <UserMenu/>
         <div className="h-3"></div>
       </div>

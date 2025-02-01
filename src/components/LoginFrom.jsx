@@ -26,7 +26,7 @@ export default function LoginForm({ link }) {
       if (userDoc.exists()) {
           Cookies.set("auth_token", token, { expires: 0.0208 });
           console.log("User Info:", user);
-          navigate('/dashboard');
+          navigate('/');
       } else {
           await setDoc(
               userRef,
@@ -72,8 +72,8 @@ export default function LoginForm({ link }) {
       }else if (userData.marketName){
         navigate('/VendorPage');
       }else {
-          console.log("Regular user. Redirecting to dashboard...");
-          navigate('/dashboard'); // Normal users go to dashboard
+          console.log("Regular user. Redirecting to main page...");
+          navigate('/'); // Normal users go to dashboard
       }
       } else {
         await setDoc(userRef, {

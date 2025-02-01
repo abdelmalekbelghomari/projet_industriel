@@ -7,6 +7,8 @@ import Registration from './Registration';
 import VendorDetails from './VendorDetails'; 
 import VendorProductManagement from './VendorProductManagement'
 import VendorProductList from './VendorProductList'
+import VendorOrders from './VendorOrders';
+import VendorDashboard from './VendorDashboard';
 import './WorkerPage.css';
 
 const VendorPage = () => {
@@ -51,13 +53,14 @@ const VendorPage = () => {
             {/* Content that changes with routes */}
             <div className="vendor-content">
                 <Routes>
-                    <Route index element={<h1>Bienvenue sur la page commerçant</h1>} />
+                    <Route index element={<VendorDashboard />} />
                     <Route 
                         path="registration" 
                         element={isRegistered ? <VendorDetails /> : <Registration />} 
                     />
                     <Route path="products" element={<VendorProductManagement />} />
                     <Route path="my-products" element={<VendorProductList />} /> {/* ✅ New Route */}
+                    <Route path="orders" element={<VendorOrders />} />    
                 </Routes>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {db, auth} from "../firebaseConfig";
-import {doc, getDoc, setDoc} from "firebase/firestore";
+import {doc, getDoc, setDoc, collection, query, where, getDocs} from "firebase/firestore";
 import "./SubCard.css";
 
 
@@ -56,35 +56,56 @@ function SubCard({ title, image, rating, price, large, disabled }) {
     const [showModal, setShowModal] = useState(false);
 
     const handleAddToCart = async () => {
-        if (disabled) return; // Empêcher l'ajout si désactivé
-
-        const user = auth.currentUser; // Récupérer l'utilisateur connecté
-
+        const user = auth.currentUser; // Get the logged-in user
+    
         if (!user) {
             alert("Vous devez être connecté pour ajouter au panier !");
             return;
         }
-
-        const cartRef = doc(db, "cart", user.uid); // Document de l'utilisateur dans `cart`
-        const cartSnap = await getDoc(cartRef);
-
-        let cartData = [];
-        if (cartSnap.exists()) {
-            cartData = cartSnap.data().items || [];
+    
+        try {
+            // 🔥 Fetch all products from Firestore
+            const productsRef = collection(db, "products");
+            const productSnap = await getDocs(productsRef);
+    
+            if (!productSnap.empty) {
+                const allProducts = productSnap.docs.map(doc => ({
+                    ...doc.data(), // Include product details
+                    quantity: 1,   // Default quantity
+                }));
+    
+                const cartRef = doc(db, "cart", user.uid); // User's cart in Firestore
+                const cartSnap = await getDoc(cartRef);
+    
+                let cartItems = [];
+                if (cartSnap.exists()) {
+                    cartItems = cartSnap.data().items || [];
+                }
+    
+                // Merge new products with existing cart items (avoid duplicates)
+                allProducts.forEach((product) => {
+                    const existingItem = cartItems.find(item => item.name === product.name);
+                    if (existingItem) {
+                        existingItem.quantity += 1; // Increase quantity if already in cart
+                    } else {
+                        cartItems.push(product); // Add new product
+                    }
+                });
+    
+                // 🔥 Update Firestore with the updated cart
+                await setDoc(cartRef, {
+                    email: user.email,
+                    displayName: user.displayName || "Utilisateur",
+                    items: cartItems, // Store updated cart
+                });
+    
+                setShowModal(true);
+            } else {
+                console.error("❌ Aucun produit trouvé dans la base de données.");
+            }
+        } catch (error) {
+            console.error("❌ Erreur lors de l'ajout au panier :", error);
         }
-
-        // Ajout du nouvel élément au panier
-        const newItem = { title, image, rating, price, quantity: 1 };
-        cartData.push(newItem);
-
-        // Mise à jour dans Firestore
-        await setDoc(cartRef, {
-            email: user.email,
-            displayName: user.displayName || "Utilisateur",
-            items: cartData,
-        });
-
-        setShowModal(true);
     };
 
     const closeModal = () => {
