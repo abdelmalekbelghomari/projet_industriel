@@ -5,6 +5,8 @@ import { db, auth } from "../firebaseConfig";
 import UserIcon from '../assets/icons/user.svg';
 import Cookies from 'js-cookie';
 
+const sideBar = false;
+
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,6 +18,7 @@ const UserMenu = () => {
   useEffect(() => {
     const checkAuth = async () => {
       const token = Cookies.get('auth_token');
+      
       setIsLoggedIn(!!token); // Update based on cookie
 
       if (token && auth.currentUser) {
@@ -27,10 +30,13 @@ const UserMenu = () => {
             const userData = userDoc.data();
             if (userData.isAdmin) {
               setProfileLink("/WorkerPage");
+              sideBar(true);
             } else if (userData.marketName) {
               setProfileLink("/VendorPage");
+              sideBar = true;
             } else {
-              setProfileLink("/");
+              setProfileLink("/userProfile");
+              sideBar = false;
             }
           }
         } catch (error) {
@@ -115,4 +121,4 @@ const UserMenu = () => {
   );
 };
 
-export default UserMenu;
+export {UserMenu, sideBar};

@@ -12,7 +12,7 @@ import logo from '../assets/icons/logo.svg';
 /* Import UserMenu */
 
 
-import UserMenu from './UserMenu';
+import {UserMenu} from './UserMenu';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

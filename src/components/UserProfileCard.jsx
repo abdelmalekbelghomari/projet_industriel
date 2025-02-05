@@ -3,6 +3,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../firebaseConfig';
 import SideNavbar from './SideNavbarClient';
+import { sideBar } from './UserMenu';
 import "./UserProfileCard.css";
 
 const UserProfile = () => {
@@ -68,7 +69,7 @@ const UserProfile = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <SideNavbar />
+      {sideBar ? <SideNavbar /> : null }
       <div className='pl-6 flex flex-col'>
         <h1 className="text-2xl font-bold mb-4 text-[#2b1a46]">Informations Personnelles</h1>
 
